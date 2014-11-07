@@ -1,0 +1,2833 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass beamer
+\begin_preamble
+\setcounter{MaxMatrixCols}{10}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{mathpazo}
+\usepackage{hyperref}
+\usepackage{multimedia}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\definecolor{RawSienna}{cmyk}{0,0.87,0.82,0.31}
+\definecolor{gray97}{cmyk}{0,0,0,0.03}
+\definecolor{robinsegg}{cmyk}{0.18,0.04,0,0.07}
+\definecolor{cola}{cmyk}{0,0.315,0.35,0.155}
+
+\newenvironment{stepenumerate}{\begin{enumerate}[<+->]}{\end{enumerate}}
+\newenvironment{stepitemize}{\begin{itemize}[<+->]}{\end{itemize} }
+\newenvironment{stepenumeratewithalert}{\begin{enumerate}[<+-| alert@+>]}{\end{enumerate}}
+\newenvironment{stepitemizewithalert}{\begin{itemize}[<+-| alert@+>]}{\end{itemize} }
+\usecolortheme[named=RawSienna]{structure}
+%\usecolortheme[RGB={205,0,0}]{structure}
+\setbeamertemplate{navigation symbols}{}
+\useoutertheme{infolines}
+\usetheme{default}
+\setbeamertemplate{blocks}[shadow=true]
+%\setbeamerfont{structure}{shape=\itshape}
+\usefonttheme{structuresmallcapsserif}
+\setbeamertemplate{background canvas}{
+ % \ifnum \thepage>0 \relax % we are on the first page
+%\includegraphics[width=\paperwidth,height=\paperheight]{/home/mv/Dropbox/Foton/IconsWallpaper/greyribbonLighter.jpg}
+ % \else
+ 	% No background for page 2 and onwards
+ % \fi
+}
+\end_preamble
+\options xcolor=svgnames
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman palatino
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_amsmath 1
+\use_esint 0
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+\begin_inset Argument
+status open
+
+\begin_layout Plain Layout
+Text Mining
+\end_layout
+
+\end_inset
+
+Text Mining
+\begin_inset Newline newline
+\end_inset
+
+Statistical Modeling of Textual Data
+\begin_inset Newline newline
+\end_inset
+
+Lecture 2
+\end_layout
+
+\begin_layout Author
+\begin_inset Argument
+status open
+
+\begin_layout Plain Layout
+Mattias Villani
+\end_layout
+
+\end_inset
+
+Mattias Villani
+\end_layout
+
+\begin_layout Institute
+
+\series bold
+\begin_inset Argument
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Statistics, LiU
+\end_layout
+
+\end_inset
+
+Division of Statistics
+\begin_inset Newline newline
+\end_inset
+
+Dept.
+ of Computer and Information Science
+\begin_inset Newline newline
+\end_inset
+
+Linköping University 
+\end_layout
+
+\begin_layout Date
+\begin_inset space \thinspace{}
+\end_inset
+
+
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+Overview
+\end_layout
+
+\begin_layout Itemize
+Text classification
+\end_layout
+
+\begin_layout Itemize
+Regularization
+\end_layout
+
+\begin_layout Itemize
+R's tm package (demo) [TMPackageDemo.R]
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+Supervised classification
+\end_layout
+
+\begin_layout Itemize
+Predict the 
+\series bold
+class label
+\series default
+ 
+\begin_inset Formula $s\in S$
+\end_inset
+
+ using a set of 
+\series bold
+features
+\series default
+.
+\end_layout
+
+\begin_layout Itemize
+Feature = Explanatory variable = Predictor = Covariate
+\end_layout
+
+\begin_layout Itemize
+Binary classification: 
+\begin_inset Formula $s\in\{0,1\}$
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Movie reviews: 
+\begin_inset Formula $S=\{\text{pos\ensuremath{,}neg}\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+E-mail spam: 
+\begin_inset Formula $S=\{\text{Spam,Ham\}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Bankruptcy: 
+\begin_inset Formula $S=\{\text{Not bankrupt, Bankrupt}\}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Multi-class classification: 
+\begin_inset Formula $s\in\{1,2,...,K\}$
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Topic categorization of web pages: 
+\begin_inset Formula $S=\{'\text{News}','\text{Sports}','\text{Entertainment}'\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+POS-tagging: 
+\begin_inset Formula $S=\{\text{VB,JJ,NN,...,DT}\}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+Supervised classification, cont.
+\end_layout
+
+\begin_layout Itemize
+Example data:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Larry Wall, born in British Columbia, Canada, is the original creator of
+ the programming language Perl.
+ Born in 1956, Larry went to ...
+\end_layout
+
+\begin_layout Itemize
+Bjarne Stroustrup is a 62-years old computer scientist ...
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\size small
+
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="6">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\begin_inset Formula $\text{\text{Person}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\begin_inset Formula $\text{Income}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\begin_inset Formula $\text{Age}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\begin_inset Formula $\text{Single}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\begin_inset Formula $\text{Payment remarks}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+Bankrupt
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+Larry
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+10
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+58
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+Yes
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+Yes
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+Yes
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+Bjarne
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+15
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+62
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+No
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+Yes
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+No
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\begin_inset Formula $\vdots$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\begin_inset Formula $\vdots$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\begin_inset Formula $\vdots$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\begin_inset Formula $\vdots$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\begin_inset Formula $\vdots$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\begin_inset Formula $\vdots$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+Guido
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+27
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+56
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+No
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+No
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+No
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Classification: construct prediction machine
+\begin_inset Formula 
+\[
+\text{Features}\rightarrow\text{Class\text{ }label}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+More generally:
+\begin_inset Formula 
+\[
+\text{Features}\rightarrow\mathrm{Pr}(\text{Class label}|\text{Features})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+Features from text documents
+\end_layout
+
+\begin_layout Itemize
+Any quantity computed from a document can used as a 
+\series bold
+feature
+\series default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Presence/absence of individual words
+\end_layout
+
+\begin_layout Itemize
+Number of times an individual word is used
+\end_layout
+
+\begin_layout Itemize
+Presence/absence of pairs of words
+\end_layout
+
+\begin_layout Itemize
+Presence/absence of individual bigrams
+\end_layout
+
+\begin_layout Itemize
+Lexical diversity
+\end_layout
+
+\begin_layout Itemize
+Word counts
+\end_layout
+
+\begin_layout Itemize
+Number of web links from document, possibly weighted by Page Rank.
+\end_layout
+
+\begin_layout Itemize
+etc etc
+\end_layout
+
+\begin_layout Standard
+
+\size tiny
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="7">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+\begin_inset Formula $\text{Document}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+has('ball')
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+has('EU')
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+has('political_arena')
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+wordlen
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+Lex.
+ Div.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+Topic
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+Article1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+Yes
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+No
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+No
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+4.1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+5.4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+Sports
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+Article2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+No
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+No
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+No
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+6.5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+13.4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+Sports
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+\begin_inset Formula $\vdots$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+\begin_inset Formula $\vdots$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+\begin_inset Formula $\vdots$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+\begin_inset Formula $\vdots$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+\begin_inset Formula $\vdots$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+\begin_inset Formula $\vdots$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+ArticleN
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+No
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+No
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+Yes
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+7.4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+11.1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+News
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Constructing clever
+\series bold
+ discriminating features
+\series default
+ is the name of the game!
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+Supervised learning for classification
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename supervised-classification.png
+	scale 75
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+The Bayesian classifier
+\end_layout
+
+\begin_layout Itemize
+Bayesian classification
+\begin_inset Formula 
+\[
+\underset{s\in S}{\mathrm{argmax}}\: p(s|\mathbf{x})
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $\mathbf{x}=(x_{1},...,x_{n})$
+\end_inset
+
+ is a feature vector.
+\end_layout
+
+\begin_layout Itemize
+By Bayes' theorem
+\begin_inset Formula 
+\[
+p(s|\mathbf{x})=\frac{p(\mathbf{x}|s)p(s)}{p(\mathbf{x})}\propto p(\mathbf{x}|s)p(s)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Bayesian classification
+\begin_inset Formula 
+\[
+\underset{s\in S}{\mathrm{argmax}}\: p(\mathbf{x}|s)p(s)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $p(s)$
+\end_inset
+
+ can be easily estimated from training data by relative frequencies.
+\end_layout
+
+\begin_layout Itemize
+Even with binary features [
+\emph on
+has(word)
+\emph default
+] the outcome space of 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $p(\mathbf{x}|s)$
+\end_inset
+
+ is huge (=data are sparse).
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+Naive Bayes
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Naive Bayes
+\series default
+ (
+\series bold
+NB
+\series default
+): 
+\series bold
+features are assumed independent
+\series default
+
+\begin_inset Formula 
+\[
+p(\mathbf{x}|s)=\prod_{j=1}^{n}p(x_{j}|s)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Naive Bayes solution
+\begin_inset Formula 
+\[
+\underset{s\in S}{\mathrm{argmax}}\left[\prod_{j=1}^{n}p(x_{j}|s)\right]p(s)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+With binary features, 
+\begin_inset Formula $p(x_{j}|s)$
+\end_inset
+
+ can be easily estimated by
+\begin_inset Formula 
+\[
+\hat{p}(x_{j}|s)=\frac{C(x_{j},s)}{C(s)}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Example: 
+\begin_inset Formula $s=$
+\end_inset
+
+news, 
+\begin_inset Formula $x_{j}=\text{has('ball')}$
+\end_inset
+
+
+\size footnotesize
+
+\begin_inset Formula 
+\[
+\hat{p}\left(\textnormal{has(ball)}|\text{news}\right)=\frac{\text{Number of news articles containing the word 'ball'}}{\text{Number of news articles}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+Naive Bayes
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Continuous features
+\series default
+ (e.g.
+ lexical diversity) can be handled by:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Replacing continous feature with several binary features (
+\begin_inset Formula $1\leq$
+\end_inset
+
+lexDiv
+\begin_inset Formula $<2$
+\end_inset
+
+, 
+\begin_inset Formula $2\leq$
+\end_inset
+
+lexDiv
+\begin_inset Formula $\leq10$
+\end_inset
+
+ and lexDiv
+\begin_inset Formula $>10$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Itemize
+Estimating 
+\begin_inset Formula $p(x_{j}|s)$
+\end_inset
+
+ by a density estimator (e.g.
+ kernel estimator)
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Finding the 
+\series bold
+most discriminatory features
+\series default
+.
+ Sort from largest to smallest
+\begin_inset Formula 
+\[
+\frac{p(x_{j}|s=pos)}{p(x_{j}|s=neg)}\mbox{\text{ for }}j=1,...,n.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Problem with NB
+\series default
+: features are seldom independent 
+\begin_inset Formula $\Rightarrow$
+\end_inset
+
+ double-counting the evidence of individual features.
+\end_layout
+
+\begin_layout Itemize
+Extreme example: what happens with naive Bayes if you duplicate a feature?
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Advantages of NB
+\series default
+: simple and fast, yet often surprising accurate classifications.
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+Multinomial regression
+\end_layout
+
+\begin_layout Itemize
+Logistic regression (Maximum Entropy/
+\series bold
+MaxEnt
+\series default
+):
+\begin_inset Formula 
+\[
+p(s=1|\mathbf{x})=\frac{\exp(\mathbf{x}'\beta)}{1+\exp(\mathbf{x}'\beta)}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Classification rule: Choose 
+\begin_inset Formula $s=0$
+\end_inset
+
+ if 
+\begin_inset Formula $p(s|\mathbf{x})<0.5$
+\end_inset
+
+ otherwise choose 
+\begin_inset Formula $s=1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+...
+ at least when consequences of different choices of 
+\begin_inset Formula $s$
+\end_inset
+
+ are the same.
+ Loss/Utility function.
+\end_layout
+
+\begin_layout Itemize
+Multinomial regression for multi-class data with 
+\begin_inset Formula $K$
+\end_inset
+
+ classes
+\begin_inset Formula 
+\[
+p(s=s_{j}|\mathbf{x})=\frac{\exp(\mathbf{x}'\beta_{j})}{\sum_{k=1}^{K}\exp(\mathbf{x}'\beta_{k})}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Classification
+\begin_inset Formula 
+\[
+\underset{s\in\{s_{1},...s_{K}\}}{\mathrm{argmax}}p(s|\mathbf{x})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Classification with text data is like any multi-class regression problem
+ ...
+ but with hundred or thousand of covariates! 
+\series bold
+Wide data
+\series default
+.
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+Regularization - Variable selection
+\end_layout
+
+\begin_layout Itemize
+Select a subset of the covariates.
+ 
+\end_layout
+
+\begin_layout Itemize
+Old school: 
+\series bold
+Forward
+\series default
+ and 
+\series bold
+backward
+\series default
+ 
+\series bold
+selection
+\series default
+.
+\end_layout
+
+\begin_layout Itemize
+New school: 
+\series bold
+Bayesian variable selection
+\series default
+.
+ 
+\end_layout
+
+\begin_layout Itemize
+For each
+\begin_inset Formula $\beta_{i}$
+\end_inset
+
+ introduce binary indicator 
+\begin_inset Formula $I_{i}$
+\end_inset
+
+ such that
+\begin_inset Formula 
+\[
+\begin{array}{cc}
+I_{i}=1 & \text{if covariate is in the model, that is \ensuremath{\beta_{i}\neq0}}\\
+I_{i}=0 & \text{if covariate is in the model, that is \ensuremath{\beta_{i}=0}}
+\end{array}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Use Markov Chain Monte Carlo (MCMC) simulation to approximate 
+\begin_inset Formula $\mathrm{Pr}(I_{i}|Data)$
+\end_inset
+
+ for each 
+\begin_inset Formula $i$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Example 
+\begin_inset Formula $S=\{\mathrm{News,Sports}\}$
+\end_inset
+
+.
+ 
+\begin_inset Formula $\mathrm{Pr(News|x)}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\size tiny
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="6">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+has('ball')
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+has('EU')
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+has('political_arena')
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+wordlen
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size tiny
+Lex.
+ Div.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset Formula $\mathrm{Pr}(I_{i}|Data)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+0.2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+0.90
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+0.99
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+0.01
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+0.85
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+Regularization - Shrinkage
+\end_layout
+
+\begin_layout Itemize
+Keep all covariates, but 
+\series bold
+shrink
+\series default
+ their 
+\begin_inset Formula $\beta$
+\end_inset
+
+-coefficient to zero.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Penalized likelihood
+\series default
+
+\begin_inset Formula 
+\[
+L_{Ridge}(\beta)=LogLik(\beta)-\lambda\beta'\beta
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ is the 
+\series bold
+penalty parameter
+\series default
+.
+\end_layout
+
+\begin_layout Itemize
+Maximize 
+\begin_inset Formula $L_{Ridge}(\beta)$
+\end_inset
+
+ with respect to 
+\begin_inset Formula $\beta$
+\end_inset
+
+.
+ Trade-off of fit (
+\begin_inset Formula $LogLik(\beta)$
+\end_inset
+
+) against complexity penalty 
+\begin_inset Formula $\beta'\beta$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Ridge regression
+\series default
+ if regression is linear.
+\end_layout
+
+\begin_layout Itemize
+The penalty can be motivated as a 
+\series bold
+Bayesian prior
+\series default
+ 
+\begin_inset Formula $\beta_{i}\overset{iid}{\sim}N(0,\lambda^{-1})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\lambda$
+\end_inset
+
+ can be estimated by cross-validation or Bayesian methods.
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+Lasso - Shrinkage and variable selection
+\end_layout
+
+\begin_layout Itemize
+Replace Ridge penalty
+\begin_inset Formula 
+\[
+L_{Ridge}(\beta)=LogLik(\beta)-\lambda\sum_{j=1}^{n}\beta_{j}^{2}
+\]
+
+\end_inset
+
+by 
+\begin_inset Formula 
+\[
+L_{Lasso}(\beta)=LogLik(\beta)-\lambda\sum_{j=1}^{n}\left|\beta_{j}\right|
+\]
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+The 
+\begin_inset Formula $\beta$
+\end_inset
+
+ that maximizes 
+\begin_inset Formula $L_{Lasso}(\beta)$
+\end_inset
+
+ is called the 
+\series bold
+Lasso estimator
+\series default
+.
+\end_layout
+
+\begin_layout Itemize
+Some parameters are shrunked exactly to zero 
+\begin_inset Formula $\Rightarrow$
+\end_inset
+
+ Lasso does 
+\series bold
+both shrinkage AND variable selection
+\series default
+.
+\end_layout
+
+\begin_layout Itemize
+Lasso penalty is equivalent to a double exponential prior
+\begin_inset Formula 
+\[
+p(\beta_{i})=\frac{\text{\lambda}}{2}\exp\left(\lambda\left|\beta_{i}-0\right|\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+Support vector machines
+\end_layout
+
+\begin_layout Itemize
+One of the best classifiers around.
+\end_layout
+
+\begin_layout Itemize
+Finds the line in covariate space that maximally separates the two classes.
+\end_layout
+
+\begin_layout Itemize
+When the points are not linearly separable: add a slack-variable 
+\begin_inset Formula $\xi_{i}>0$
+\end_inset
+
+ for each observation.
+ Allow misclassification, but make it costly.
+\end_layout
+
+\begin_layout Itemize
+Non-linear separing curves can be obtained by basis expansion (think about
+ adding 
+\begin_inset Formula $x^{2}$
+\end_inset
+
+, 
+\begin_inset Formula $x^{3}$
+\end_inset
+
+ and so on)
+\end_layout
+
+\begin_layout Itemize
+The kernel trick makes it possible to handle many covariates.
+\end_layout
+
+\begin_layout Itemize
+Drawback: not so easily extended to multi-class.
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+svm
+\family default
+ function in R-package 
+\family typewriter
+e1071 [
+\family default
+or 
+\family typewriter
+nltk.classify.svm]
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+Linear SVMs
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename Svm_separating_hyperplanes_(SVG).svg
+	lyxscale 20
+	scale 21
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+Regression trees and random forest
+\end_layout
+
+\begin_layout Itemize
+Binary partioning tree.
+ 
+\end_layout
+
+\begin_layout Itemize
+At each internal node decide:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Which covariate to split on
+\end_layout
+
+\begin_layout Itemize
+Where to split the covariate (
+\begin_inset Formula $X_{j}<c$
+\end_inset
+
+.
+ Trivial for binary covariates)
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+The optimal splitting variables and split-points are chosen to minimize
+ the mis-classification rate (or other similar measures).
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Random forest
+\series default
+ (
+\series bold
+RF
+\series default
+) predicts using an average of many small trees.
+\end_layout
+
+\begin_layout Itemize
+Each tree in RF is grown on a random subset of variables.
+ Makes it possible to handle 
+\series bold
+many covariates
+\series default
+.
+ Parallel.
+\end_layout
+
+\begin_layout Itemize
+Advantage of RF: better predictions than trees.
+\end_layout
+
+\begin_layout Itemize
+RF harder to interpret, but provide variable importance scores.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+R packages
+\series default
+: 
+\family typewriter
+tree
+\family default
+ and 
+\family typewriter
+rpart
+\family default
+ (trees), 
+\family typewriter
+randomForest
+\family default
+ (RF).
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+Regression trees
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename decision-tree.png
+	scale 80
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+Evaluating a classifier: Accuracy and Error
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Confusion
+\series default
+ matrix:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="4">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Truth
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Spam
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Not Spam
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="3" alignment="left" valignment="middle" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Decision
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Spam
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+tp
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+fp
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Not Spam
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+fn
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+tn
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+tp = true positive, fp = false positive
+\end_layout
+
+\begin_layout Itemize
+fn = false negative, tn = true negative
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Accuracy
+\series default
+ is the proportion of correctly classified items
+\begin_inset Formula 
+\[
+\texttt{Accuracy = \frac{tp+tn}{tp+tn+fn+fp}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Error
+\series default
+ is the proportion of wrongly classified items
+\begin_inset Formula 
+\[
+\text{Error}=\text{1-Accuracy}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+Accuracy can be misleading
+\end_layout
+
+\begin_layout Itemize
+Accuracy is problematic when tn is large.
+ High accuracy can then be obtained by not acting at all!
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="4">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Truth
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Spam
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Not Spam
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="3" alignment="left" valignment="middle" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Choice
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Spam
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Not Spam
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+100
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+900
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+Evaluating a classifier: the F-measure
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Confusion
+\series default
+ matrix:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="4">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Truth
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Spam
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Good
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="3" alignment="left" valignment="middle" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Choice
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Spam
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+tp
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+fp
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Good
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+fn
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+tn
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Precision
+\series default
+ = proportion of selected items that the system got right
+\begin_inset Formula 
+\[
+\text{Precision = }\frac{\text{tp}}{\text{tp+fp}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Recall
+\series default
+ = proportion of spam that the system classified as spam 
+\begin_inset Formula 
+\[
+\text{Recall \ensuremath{=\frac{\text{tp}}{\text{tp+fn}}}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+F-measure
+\series default
+ is a trade-off between Precision and Recall (harmonic mean):
+\begin_inset Formula 
+\[
+F=\frac{1}{\alpha\frac{1}{Precision}+(1-\alpha)\frac{1}{Recall}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\end_body
+\end_document

@@ -1,0 +1,873 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass beamer
+\begin_preamble
+\setcounter{MaxMatrixCols}{10}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{mathpazo}
+\usepackage{hyperref}
+\usepackage{multimedia}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\definecolor{RawSienna}{cmyk}{0,0.87,0.82,0.31}
+\definecolor{gray97}{cmyk}{0,0,0,0.03}
+\definecolor{robinsegg}{cmyk}{0.18,0.04,0,0.07}
+\definecolor{cola}{cmyk}{0,0.315,0.35,0.155}
+
+\newenvironment{stepenumerate}{\begin{enumerate}[<+->]}{\end{enumerate}}
+\newenvironment{stepitemize}{\begin{itemize}[<+->]}{\end{itemize} }
+\newenvironment{stepenumeratewithalert}{\begin{enumerate}[<+-| alert@+>]}{\end{enumerate}}
+\newenvironment{stepitemizewithalert}{\begin{itemize}[<+-| alert@+>]}{\end{itemize} }
+\usecolortheme[named=RawSienna]{structure}
+%\usecolortheme[RGB={205,0,0}]{structure}
+\setbeamertemplate{navigation symbols}{}
+\useoutertheme{infolines}
+\usetheme{default}
+\setbeamertemplate{blocks}[shadow=true]
+%\setbeamerfont{structure}{shape=\itshape}
+\usefonttheme{structuresmallcapsserif}
+\setbeamertemplate{background canvas}{
+ % \ifnum \thepage>0 \relax % we are on the first page
+%\includegraphics[width=\paperwidth,height=\paperheight]{/home/mv/Dropbox/Foton/IconsWallpaper/greyribbonLighter.jpg}
+ % \else
+ 	% No background for page 2 and onwards
+ % \fi
+}
+\end_preamble
+\options xcolor=svgnames
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman palatino
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_amsmath 1
+\use_esint 0
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+\begin_inset Argument
+status open
+
+\begin_layout Plain Layout
+Text Mining
+\end_layout
+
+\end_inset
+
+Text Mining
+\begin_inset Newline newline
+\end_inset
+
+Statistical Modeling of Textual Data
+\begin_inset Newline newline
+\end_inset
+
+Entropy Bonus
+\end_layout
+
+\begin_layout Author
+\begin_inset Argument
+status open
+
+\begin_layout Plain Layout
+Mattias Villani
+\end_layout
+
+\end_inset
+
+Mattias Villani
+\end_layout
+
+\begin_layout Institute
+
+\series bold
+\begin_inset Argument
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Statistics, LiU
+\end_layout
+
+\end_inset
+
+Division of Statistics
+\begin_inset Newline newline
+\end_inset
+
+Dept.
+ of Computer and Information Science
+\begin_inset Newline newline
+\end_inset
+
+Linköping University 
+\end_layout
+
+\begin_layout Date
+\begin_inset space \thinspace{}
+\end_inset
+
+
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+Binary representation
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Bit
+\series default
+ = 0-1, True-False, On-Off (binary digit).
+\end_layout
+
+\begin_layout Itemize
+Representing four different outcomes in two bits:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Option A: 00
+\end_layout
+
+\begin_layout Itemize
+Option B: 01
+\end_layout
+
+\begin_layout Itemize
+Option C: 10
+\end_layout
+
+\begin_layout Itemize
+Option D: 11
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+General: 
+\begin_inset Formula $n$
+\end_inset
+
+ bits can encode 
+\begin_inset Formula $2^{n}$
+\end_inset
+
+ different outcomes.
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+\begin_inset Quotes eld
+\end_inset
+
+Entropy by the lake
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename EntropyByTheLake.png
+	lyxscale 30
+	scale 15
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+Entropy
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Entropy
+\series default
+ = The 
+\series bold
+smallest number of bits
+\series default
+ needed to encode a message using an 
+\series bold
+optimal
+\series default
+ 
+\series bold
+coding
+\series default
+ 
+\series bold
+scheme
+\series default
+.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Measure of information
+\series default
+.
+\end_layout
+
+\begin_layout Itemize
+Entropy of a random variable:
+\begin_inset Formula 
+\[
+H(X)=-\sum_{x\in\mathcal{X}}p(x)\cdot\log_{2}p(x)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+If all 8 fishermen are equally skilled: 
+\begin_inset Formula $p(x)=\frac{1}{8}$
+\end_inset
+
+ and 
+\begin_inset Formula 
+\[
+H(X)=-\left(\frac{1}{8}\log_{2}\frac{1}{8}+...+\frac{1}{8}\log_{2}\frac{1}{8}\right)=-\left(\log_{2}1-\log_{2}8\right)=3\mbox{ bits}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+Entropy and Huffman coding
+\end_layout
+
+\begin_layout Itemize
+Entropy of a random variable:
+\begin_inset Formula 
+\[
+H(X)=-\sum_{x\in\mathcal{X}}p(x)\cdot\log_{2}p(x)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+If the fishermen are not equally skilled and 
+\begin_inset Formula 
+\[
+\begin{array}{ccccccccc}
+x: & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8\\
+p(x): & \frac{1}{2} & \frac{1}{4} & \frac{1}{8} & \frac{1}{16} & \frac{1}{64} & \frac{1}{64} & \frac{1}{64} & \frac{1}{64}
+\end{array}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Entropy:
+\begin_inset Formula 
+\[
+H(X)=-\left(\frac{1}{2}\log_{2}\frac{1}{2}+...+\frac{1}{64}\log_{2}\frac{1}{64}\right)=2\text{ bits}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+The optimal scheme sends only two bits 
+\emph on
+on average
+\emph default
+ (
+\series bold
+Huffman coding
+\series default
+).
+\begin_inset Formula 
+\[
+\begin{array}{ccccccccc}
+x: & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8\\
+\text{Code}: & 0 & 10 & 110 & 1110 & 111100 & 111101 & 111110 & 111111
+\end{array}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+Entropy as expected surprise
+\end_layout
+
+\begin_layout Itemize
+The entropy can be written
+\begin_inset Formula 
+\[
+H(X)=\sum p(x)\cdot\log_{2}\frac{1}{p(x)}=\mathrm{E}\left(\log_{2}\frac{1}{p(x)}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\frac{1}{p(x)}$
+\end_inset
+
+ is a measure how 
+\emph on
+surprising
+\emph default
+ the outcome 
+\begin_inset Formula $x$
+\end_inset
+
+ is.
+\end_layout
+
+\begin_layout Itemize
+Entropy is the 
+\series bold
+expected surprise
+\series default
+ when values are drawn from 
+\begin_inset Formula $p(x)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Entropy is a 
+\series bold
+measure of uncertainty
+\series default
+ in a distribution.
+\end_layout
+
+\begin_layout Itemize
+Entropy of a continuous variable
+\begin_inset Formula 
+\[
+H(X)=-\int p(x)\cdot\log_{2}p(x)dx
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $X\sim N(\mu,\sigma^{2})$
+\end_inset
+
+ 
+\begin_inset Formula $\rightarrow$
+\end_inset
+
+ 
+\begin_inset Formula $H(X)=\frac{1}{2}\ln\left(2\pi e\sigma^{2}\right)$
+\end_inset
+
+ [Entropy defined using natural logs].
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+Joint and conditional entropy
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Joint entropy
+\series default
+
+\begin_inset Formula 
+\[
+H(X,Y)=-\sum_{x\in\mathcal{X}}\sum_{y\in\mathcal{Y}}p(x,y)\cdot\log_{2}p(x,y)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Conditional entropy of 
+\begin_inset Formula $Y$
+\end_inset
+
+ given 
+\begin_inset Formula $X=x$
+\end_inset
+
+ 
+\begin_inset Formula 
+\[
+H(Y|X=x)=-\sum_{y\in\mathcal{Y}}p(y|x)\cdot\log_{2}p(y|x)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Conditional entropy
+\series default
+ of 
+\begin_inset Formula $Y$
+\end_inset
+
+ 
+\begin_inset Formula 
+\[
+H(Y|X)=\sum_{x\in\mathcal{X}}p(x)\cdot H(Y|X=x)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Chain rule for entropy [corresponds to 
+\begin_inset Formula $p(X,Y)=p(X)\cdot p(Y|X)$
+\end_inset
+
+]
+\begin_inset Formula 
+\[
+H(X,Y)=H(X)+H(Y|X)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+Mutual information
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Mutual information
+\series default
+ (reduction in entropy of 
+\begin_inset Formula $X$
+\end_inset
+
+ from knowing 
+\begin_inset Formula $Y$
+\end_inset
+
+)
+\begin_inset Formula 
+\[
+I(X;Y)=H(X)-H(X|Y)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Kullback-Leibler divergence between distributions (
+\series bold
+relative entropy
+\series default
+)
+\begin_inset Formula 
+\[
+D\left(p||q\right)=\sum_{x\in\mathcal{X}}p(x)\cdot\log\frac{p(x)}{q(x)}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Alternative formulation of mutual information:
+\begin_inset Formula 
+\[
+I(X;Y)=\sum_{x,y}p(x,y)\cdot\log\frac{p(x,y)}{p(x)\cdot p(y)}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $I(X;Y)$
+\end_inset
+
+ measures how far a joint distribution is from independence:
+\begin_inset Formula 
+\[
+I(X;Y)=D\left[p(x,y)||p(x)\cdot p(y)\right]
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+Evaluating language models using entropy
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Cross-entropy
+\series default
+
+\begin_inset Formula 
+\[
+H(p,q)=-\sum_{x\in\mathcal{X}}p(x)\cdot\log q(x)=\mathrm{E}_{p}\left[\log\frac{1}{q(x)}\right]
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Cross-entropy is the 
+\series bold
+expected surprise of using language model 
+\begin_inset Formula $q(x)$
+\end_inset
+
+ when language is given by 
+\begin_inset Formula $p(x)$
+\end_inset
+
+
+\series default
+.
+ Low 
+\begin_inset Formula $H(p,q)$
+\end_inset
+
+ means good 
+\begin_inset Formula $q$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+We don't know 
+\begin_inset Formula $p(x)$
+\end_inset
+
+, but can approximate 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $\frac{1}{n}H(p,q)$
+\end_inset
+
+
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ in a large regular text using:
+\begin_inset Formula 
+\[
+H(p,q)=\lim_{n\rightarrow\infty}-\frac{1}{n}\log q(w_{1},...,w_{n})
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $q(w_{1},w_{2},...,w_{n})=q(w_{1})q(w_{2}|w_{1})\cdots q(w_{n}|w_{1},...,w_{n-1})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+The cross-entropy is related to the entropy as follows
+\begin_inset Formula 
+\[
+H(p,q)=H(p)+D\left(p||q\right)
+\]
+
+\end_inset
+
+so 
+\begin_inset Formula $H(p,q)\geq H(p)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+Cross-entropy of n-Grams for English
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Model
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Cross entropy in bits
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0-gram (uniform model on 27 letters)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $4.76$
+\end_inset
+
+(
+\begin_inset Formula $=\log_{2}27)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+unigram
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $4.03$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+bigram
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $2.80$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Shannon's human experiment
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $1.34$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\end_body
+\end_document

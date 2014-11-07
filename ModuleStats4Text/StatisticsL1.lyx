@@ -1,0 +1,1583 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass beamer
+\begin_preamble
+\setcounter{MaxMatrixCols}{10}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{mathpazo}
+\usepackage{hyperref}
+\usepackage{multimedia}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\definecolor{RawSienna}{cmyk}{0,0.87,0.82,0.31}
+\definecolor{gray97}{cmyk}{0,0,0,0.03}
+\definecolor{robinsegg}{cmyk}{0.18,0.04,0,0.07}
+\definecolor{cola}{cmyk}{0,0.315,0.35,0.155}
+
+\newenvironment{stepenumerate}{\begin{enumerate}[<+->]}{\end{enumerate}}
+\newenvironment{stepitemize}{\begin{itemize}[<+->]}{\end{itemize} }
+\newenvironment{stepenumeratewithalert}{\begin{enumerate}[<+-| alert@+>]}{\end{enumerate}}
+\newenvironment{stepitemizewithalert}{\begin{itemize}[<+-| alert@+>]}{\end{itemize} }
+\usecolortheme[named=RawSienna]{structure}
+%\usecolortheme[RGB={205,0,0}]{structure}
+\setbeamertemplate{navigation symbols}{}
+\useoutertheme{infolines}
+\usetheme{default}
+\setbeamertemplate{blocks}[shadow=true]
+%\setbeamerfont{structure}{shape=\itshape}
+\usefonttheme{structuresmallcapsserif}
+\setbeamertemplate{background canvas}{
+ % \ifnum \thepage>0 \relax % we are on the first page
+%\includegraphics[width=\paperwidth,height=\paperheight]{/home/mv/Dropbox/Foton/IconsWallpaper/greyribbonLighter.jpg}
+ % \else
+ 	% No background for page 2 and onwards
+ % \fi
+}
+\end_preamble
+\options xcolor=svgnames
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman palatino
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_amsmath 1
+\use_esint 0
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+\begin_inset Argument
+status open
+
+\begin_layout Plain Layout
+Text Mining
+\end_layout
+
+\end_inset
+
+Text Mining
+\begin_inset Newline newline
+\end_inset
+
+Statistical Modeling of Textual Data
+\begin_inset Newline newline
+\end_inset
+
+Lecture 1
+\end_layout
+
+\begin_layout Author
+\begin_inset Argument
+status open
+
+\begin_layout Plain Layout
+Mattias Villani
+\end_layout
+
+\end_inset
+
+Mattias Villani
+\end_layout
+
+\begin_layout Institute
+
+\series bold
+\begin_inset Argument
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Statistics, LiU
+\end_layout
+
+\end_inset
+
+Division of Statistics
+\begin_inset Newline newline
+\end_inset
+
+Dept.
+ of Computer and Information Science
+\begin_inset Newline newline
+\end_inset
+
+Linköping University 
+\end_layout
+
+\begin_layout Date
+\begin_inset space \thinspace{}
+\end_inset
+
+
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+Overview 'Statistics for Textual Data'
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Lecture 1
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+Language models and n-grams
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Smoothing
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Part-of-speech tagging
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Lecture 2
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+Text classification
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Lecture 3
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+Topic models
+\end_layout
+
+\end_deeper
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+Language models - predict the next word
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename SwiftKeyWordPred.png
+	scale 15
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+Language models
+\end_layout
+
+\begin_layout Itemize
+Let 
+\begin_inset Formula $w_{i}$
+\end_inset
+
+ denote the 
+\begin_inset Formula $i$
+\end_inset
+
+th word in a sentence.
+ Let 
+\begin_inset Formula $w_{1}^{k}=w_{1}w_{2}\cdots w_{k}$
+\end_inset
+
+ denote a sentence of 
+\begin_inset Formula $k$
+\end_inset
+
+ words.
+\end_layout
+
+\begin_layout Itemize
+The probability of a sentence 
+\begin_inset Formula 
+\[
+p(w_{1}^{n})=p(w_{1})\cdot p(w_{2}|w_{1})p(w_{3}|w_{1}^{2})\cdots p(w_{n}|w_{1}^{n-1})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Probability distribution over the next word in a sentence:
+\begin_inset Formula 
+\[
+p(w_{k}|w_{1}^{k-1})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Example:
+\begin_inset Formula 
+\[
+p(\text{mall}|\text{I like to go to the})=0.2
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+p(\text{school}|\text{I like to go to the})=0.001
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Add beginning of sentence tags <s>.
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+Unigram models
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Bag-or-words
+\series default
+ 
+\series bold
+model
+\series default
+ (
+\series bold
+unigram
+\series default
+) ignores the previous words:
+\begin_inset Formula 
+\[
+p(w_{n}|w_{1},...,w_{n-1})=p(w_{n})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $p(w_{n})$
+\end_inset
+
+ can be estimated by the relative frequency of the word 
+\begin_inset Formula $w_{n}$
+\end_inset
+
+ among all 
+\begin_inset Formula $N$
+\end_inset
+
+ words in the training corpus (
+\series bold
+maximum likelihood
+\series default
+, 
+\series bold
+ML
+\series default
+).
+\begin_inset Formula 
+\[
+\hat{p}_{ML}(w_{n})=\frac{C(w_{n})}{N}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Simulating a text from a bag-of-words model gives rubbish.
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+Language models - nGrams
+\end_layout
+
+\begin_layout Itemize
+The
+\series bold
+ bigram
+\series default
+ model
+\begin_inset Formula 
+\[
+p(w_{n}|w_{1},...,w_{n-1})=p(w_{n}|w_{n-1})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+ML estimate:
+\begin_inset Formula 
+\[
+\hat{p}(w_{n}|w_{n-1})=\frac{\text{Number of times word \ensuremath{w_{n}}}\text{ follows directly after \ensuremath{w_{n-1}}}}{\text{Number of times \ensuremath{w_{n-1}}appears in the text}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Alternative formulation
+\begin_inset Formula 
+\[
+\hat{p}(w_{n}|w_{n-1})=\frac{\text{\ensuremath{C(w_{n-1}},}\ensuremath{w_{n})}}{\text{\ensuremath{C(w_{n-1}}})}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+The bigram language model can therefore be estimated from unigram and bigram
+ counts.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Trigram model
+\series default
+: 
+\begin_inset Formula $p(w_{n}|w_{n-1},w_{n-2})$
+\end_inset
+
+ and so on.
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+nGram models in NLTK 
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+nltk.bigrams()
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+nltk.trigrams()
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+nGramModel = nltk.NgramModel(2,text7)
+\family default
+ # Training a bigram model from text7
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+nGramModel.generate(num_words=50) 
+\family default
+# Simulate a text with 50 words from the model.
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+The sparsity problem - unigram case
+\end_layout
+
+\begin_layout Itemize
+Maximum likelihood estimator (MLE) for unigram model: 
+\begin_inset Formula 
+\[
+\hat{p}_{ML}(w_{n})=\frac{C(w_{1})}{N}
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $N$
+\end_inset
+
+ is the number of words in training corpus.
+\end_layout
+
+\begin_layout Itemize
+Problem with MLE: words not in training corpus are deemed impossible!
+\begin_inset Formula 
+\[
+C(w_{1})=0\;\Rightarrow\;\hat{p}_{ML}(w_{n})=0
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Fixing the MLE: 
+\series bold
+add-one smoothing 
+\series default
+(
+\series bold
+Laplace
+\series default
+ 
+\series bold
+smoothing
+\series default
+)
+\begin_inset Formula 
+\[
+Pr_{Lap}(w_{1})=\frac{C(w_{1})+1}{N+V},
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $V$
+\end_inset
+
+ is the number of words in vocabulary.
+\end_layout
+
+\begin_layout Itemize
+Evaluating language models by 
+\series bold
+Perplexity
+\series default
+ (
+\series bold
+PP
+\series default
+)
+\begin_inset Formula 
+\[
+\mathrm{PP}=\sqrt[N]{\frac{1}{P(w_{1}w_{2}\cdots w_{N})}}=\sqrt[N]{\prod_{i=1}^{N}\frac{1}{P(w_{i}|w_{1}\cdots w_{i-1})}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+The sparsity problem - nGrams
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Bigrams
+\series default
+ looks for pairs of consequtive words 
+\begin_inset Formula $w_{1}w_{2}$
+\end_inset
+
+.
+ The number of possible outcomes is now 
+\begin_inset Formula $B=V^{2}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+n-grams can have a 
+\series bold
+huge outcome space
+\series default
+ 
+\begin_inset Formula $B=V^{n}$
+\end_inset
+
+.
+ Lots of n-grams are unseen in training corpus.
+ 
+\series bold
+Sparsity
+\series default
+ problems!
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Add-one smoothing for n-grams
+\series default
+
+\begin_inset Formula 
+\[
+Pr_{Lap}(w_{1}w_{2}\cdots w_{n})=\frac{C(w_{1}w_{2}\cdots w_{n})+1}{N+B},
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $C(w_{1}w_{2}\cdots w_{n})$
+\end_inset
+
+ is the number of n-grams 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $w_{1}w_{2}\cdots w_{n}$
+\end_inset
+
+ in the training corpus.
+\end_layout
+
+\begin_layout Itemize
+But who put the 1 in add-one smoothing?
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+Likelihood inference for multinomial data
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Data
+\series default
+: 
+\begin_inset Formula $y=(n_{1},...n_{B})$
+\end_inset
+
+, where 
+\begin_inset Formula $n_{b}$
+\end_inset
+
+ counts the number of observations in the 
+\begin_inset Formula $b$
+\end_inset
+
+th category.
+ 
+\begin_inset Formula $\sum_{j=1}^{B}n_{j}=N$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Example: A recent survey among consumer smartphones owners in the U.S.
+ showed that among the 
+\begin_inset Formula $N=$
+\end_inset
+
+
+\begin_inset Formula $513$
+\end_inset
+
+ respondents:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $n_{1}=180$
+\end_inset
+
+ owned an iPhone
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $n_{2}=230$
+\end_inset
+
+ owned an Android phone
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $n_{3}=62$
+\end_inset
+
+ owned a Blackberry phone
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $n_{4}=41$
+\end_inset
+
+ owned some other mobile phone.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Let 
+\begin_inset Formula $\theta_{1}=Pr(\text{owns iPhone})$
+\end_inset
+
+, 
+\begin_inset Formula $\theta_{2}=Pr(\text{owns Android})$
+\end_inset
+
+ etc
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Likelihood
+\series default
+
+\begin_inset Formula 
+\[
+p(n_{1},n_{2},...,n_{B}|\theta_{1},\theta_{2},...,\theta_{B})=const\cdot\prod_{j=1}^{B}\theta_{j}^{n_{j}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Maximum likelihood
+\series default
+ (ML) estimator
+\begin_inset Formula 
+\[
+\hat{\theta}_{b}=\frac{n_{b}}{N}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+Bayesian smoothing for multinomial data
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Maximum likelihood
+\series default
+ (ML) estimator
+\begin_inset Formula 
+\[
+\hat{\theta}_{b}=\frac{n_{b}}{N}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+ML problematic when data is sparse
+\series default
+.
+ 
+\begin_inset Formula $n_{b}=0$
+\end_inset
+
+ 
+\begin_inset Formula $\Rightarrow$
+\end_inset
+
+ 
+\begin_inset Formula $\hat{\theta}_{b}=0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Smoothing
+\series default
+ using a 
+\series bold
+Bayesian prior
+\series default
+.
+\end_layout
+
+\begin_layout Itemize
+Prior: 
+\begin_inset Formula $\theta\sim\mathrm{Dirichlet}(\alpha_{1},...,\alpha_{B})$
+\end_inset
+
+ with density
+\begin_inset Formula 
+\[
+p(\theta_{1},\theta_{2},...,\theta_{B})\propto\prod_{j=1}^{B}\theta_{j}^{\alpha_{j}-1}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Expected value
+\series default
+ and 
+\series bold
+variance
+\series default
+ of the 
+\begin_inset Formula $Dirichlet(\alpha_{1},...,\alpha_{B})$
+\end_inset
+
+ distribution
+\begin_inset Formula 
+\begin{align*}
+\mathrm{E}(\theta_{b}) & =\frac{\alpha_{b}}{\sum_{j=1}^{B}\alpha_{j}}\qquad\qquad\mathrm{V}(\theta_{b})=\frac{\mathrm{E}(\theta_{b})\left[1-\mathrm{E}(\theta_{b})\right]}{1+\sum_{j=1}^{B}\alpha_{j}}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Note that 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $\sum_{j=1}^{B}\alpha_{j}$
+\end_inset
+
+
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ is a 
+\series bold
+precision
+\series default
+ parameter.
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+Bayesian smoothing for multinomial data
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Posterior
+\series default
+ distribution (Likelihood 
+\begin_inset Formula $\times$
+\end_inset
+
+Prior) 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula 
+\[
+Posterior:\text{ \ \ }\theta|n_{1},...,n_{B}\sim\mathrm{Dirichlet}(n_{1}+\alpha_{1},...,n_{B}+\alpha_{B})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Posterior expected value
+\series default
+
+\begin_inset Formula 
+\[
+E(\theta_{b}|n_{1},...,n_{B})=\frac{n_{b}+\alpha_{b}}{N+\sum_{j=1}^{B}\alpha_{j}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Add-one (Laplace) smoothing
+\series default
+ obtained with uniform prior 
+\begin_inset Formula $\alpha_{1}=...=\alpha_{B}=1$
+\end_inset
+
+
+\begin_inset Formula 
+\[
+E(\theta_{b}|n_{1},...,n_{B})=\frac{n_{b}+1}{N+B}
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $B=V^{n}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Not a great solution when 
+\begin_inset Formula $B>>N$
+\end_inset
+
+.
+ Too much probability mass on unseen words.
+\end_layout
+
+\begin_layout Itemize
+Uniform prior distribution over all n-grams is stupid.
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+Other smoothing methods
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Linear interpolation
+\series default
+ combines trigram, bigram and unigrams:
+\begin_inset Formula 
+\[
+\hat{p}_{LI}(w_{n}|w_{n-1},w_{n-2})=\lambda_{1}\hat{p}(w_{n}|w_{n-1},w_{n-2})+\lambda_{2}\hat{p}(w_{n}|w_{n-1})+\lambda_{3}\hat{p}(w_{n})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+The parameters 
+\begin_inset Formula $\lambda_{1}$
+\end_inset
+
+, 
+\begin_inset Formula $\lambda_{2}$
+\end_inset
+
+ and 
+\begin_inset Formula $\lambda_{3}$
+\end_inset
+
+ can be chosen by cross-validation.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Katz back-off
+\series default
+ 
+\begin_inset Formula $N$
+\end_inset
+
+-gram model: use 
+\begin_inset Formula $N$
+\end_inset
+
+-gram if available, otherwise back-off to 
+\begin_inset Formula $N-1$
+\end_inset
+
+ gram:
+\family typewriter
+\size footnotesize
+ 
+\begin_inset Formula 
+\[
+\hat{p}_{katz}(w_{n}|w_{n-N+1}^{n-1})=\left\{ \begin{array}{cc}
+\hat{p}(w_{n}|w_{n-N+1}^{n-1}) & \text{if }C(w_{n-N+1}^{n})>0\\
+\alpha(w_{n-N+1}^{n-1})\cdot\hat{p}_{katz}(w_{n}|w_{n-N+2}^{n-1}) & \text{otherwise}
+\end{array}\right\} 
+\]
+
+\end_inset
+
+
+\family default
+\size default
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Class-based N-grams: use word classes to better distribute probability mass
+ to unseen trigrams.
+ Verb-Verb-Verb is not a likely sequence.
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+Part-of-speech tagging
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Part-of-Speech
+\series default
+ (
+\series bold
+POS
+\series default
+) or 
+\series bold
+word classes
+\series default
+ - verb, noun, adjective, preposition etc:
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Examples from 45-tag Penn Treebank:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+JJ - 
+\series bold
+Adjective
+\series default
+.
+ JJR - comparative.
+ JJS - superlative
+\end_layout
+
+\begin_layout Itemize
+NN - 
+\series bold
+Noun
+\series default
+, singular or mass, NNS - plural NNP - Proper noun, singular NNPS - Proper
+ noun, plural
+\end_layout
+
+\begin_layout Itemize
+VB - 
+\series bold
+Verb
+\series default
+, base form.
+ VBD - past tense.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Brown corpus in NLTK: 
+\series bold
+The
+\series default
+/at 
+\series bold
+Fulton
+\series default
+/np-tl 
+\series bold
+County
+\series default
+/
+\series bold
+nn-tl
+\series default
+ 
+\series bold
+Grand
+\series default
+/jj-tl 
+\series bold
+Jury
+\series default
+/nn-tl 
+\series bold
+said
+\series default
+/vbd 
+\series bold
+Friday
+\series default
+/nr ...
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+nltk.corpus.brown.tagged_words(simplify_tags=True): 
+\begin_inset Newline newline
+\end_inset
+
+[('
+\series bold
+The
+\series default
+', 'DET'), ('
+\series bold
+Fulton
+\series default
+', 'N'), ('
+\series bold
+County
+\series default
+', 'N'), ...]
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+nltk.pos_tag(myText) 
+\family default
+[first 
+\family typewriter
+nltk.word_tokenize(myText)
+\family default
+]
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+A probabilistic model for POS tagging
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+POS tagging
+\series default
+: determine the sequence of POS tags 
+\begin_inset Formula 
+\[
+t_{1}^{n}=t_{1}t_{2}\cdots t_{n}
+\]
+
+\end_inset
+
+ for the words in the sentence
+\begin_inset Formula 
+\[
+w_{1}^{n}=w_{1}w_{2}\cdots w_{n}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Note: each word gets a POS tag
+\begin_inset Formula 
+\[
+\begin{array}{cccc}
+w_{1} & w_{2} & \cdots & w_{n}\\
+t_{1} & t_{2} & \cdots & t_{n}
+\end{array}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Aim: posterior distribution of the tags
+\begin_inset Formula 
+\[
+p(t_{1}^{n}|w_{1}^{n})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Or perhaps sufficient with posterior mode
+\begin_inset Formula 
+\[
+\underset{t_{1}^{n}}{\mathrm{argmax}}\: p(t_{1}^{n}|w_{1}^{n})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+A probabilistic model for POS tagging, cont.
+\end_layout
+
+\begin_layout Itemize
+Bayes theorem:
+\begin_inset Formula 
+\[
+p(t_{1}^{n}|w_{1}^{n})=\frac{p(w_{1}^{n}|t_{1}^{n})p(t_{1}^{n})}{p(w_{1}^{n})}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Since 
+\begin_inset Formula $p(w_{1}^{n})$
+\end_inset
+
+ does not depend on 
+\begin_inset Formula $t_{1}^{n},$
+\end_inset
+
+ we can use
+\begin_inset Formula 
+\[
+p(t_{1}^{n}|w_{1}^{n})\propto p(w_{1}^{n}|t_{1}^{n})p(t_{1}^{n})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Problem: outcome space of 
+\begin_inset Formula $t_{1}^{n}$
+\end_inset
+
+ is enormous.
+ Example: 
+\begin_inset Formula $n=5$
+\end_inset
+
+ with 
+\begin_inset Formula $45$
+\end_inset
+
+-tag set: 
+\begin_inset Formula $45^{5}=184528125$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Example
+\begin_inset Formula 
+\[
+\begin{array}{cccccccc}
+ & \text{I} & \text{am} & \text{great} & \text{at} & \text{grammar} &  & p(t_{1}^{n}|w_{1}^{n})\\
+ & t_{1} & t_{2} & t_{3} & t_{4} & t_{5} &  & 0.001\\
+1 & JJ & VB & JJ & VB & VBD &  & 0.002\\
+2 & VB & VB & JJ & JJ & VBD &  & 0.002\\
+3 & NN & JJ & NNP & VB & JJ &  & 0.005\\
+\vdots & \vdots & \vdots & \vdots & \vdots & \vdots &  & \vdots\\
+45^{5} & JJ & VB & DT & VB & NN &  & 0.003
+\end{array}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+A probabilistic model for POS tagging, cont.
+\end_layout
+
+\begin_layout Itemize
+Two simplifying assumptions makes the problem manageable.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Assumption 1
+\series default
+: 
+\series bold
+each word depends only on its tag
+\series default
+: 
+\begin_inset Formula 
+\[
+p(w_{1}^{n}|t_{1}^{n})=\prod_{i=1}^{n}p(w_{i}|t_{i})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Assumption 2
+\series default
+: 
+\series bold
+Bigram assumption
+\series default
+ for the 
+\series bold
+tags
+\series default
+: 
+\begin_inset Formula 
+\[
+p(t_{1}^{n})=\prod_{i=1}^{n}p(t_{i}|t_{i-1})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Hidden Markov model
+\series default
+ (
+\series bold
+HMM
+\series default
+).
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+Markov model for POS tags - HMM model
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename MarkovPOS.png
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+Observation likelihoods - HMM model
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename MarkovPOSWordAndTags.jpg
+	lyxscale 20
+	scale 12
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+Part-of-speech tagging, cont.
+\end_layout
+
+\begin_layout Itemize
+The POS prior
+\begin_inset Formula 
+\[
+p(t_{1}^{n})=\prod_{i=1}^{n}p(t_{i}|t_{i-1})
+\]
+
+\end_inset
+
+can be estimated as a bigram model from a tagged corpus.
+\end_layout
+
+\begin_layout Itemize
+The word distribution 
+\begin_inset Formula $p(w_{i}|t_{i})$
+\end_inset
+
+ can be estimated by
+\begin_inset Formula 
+\[
+\hat{p}(w_{i}|t_{i})=\frac{C(t_{i},w_{i})}{C(t_{i})}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+The solution to the prediction (parsing) problem
+\begin_inset Formula 
+\[
+\mathrm{argmax}_{t_{1}^{n}}\, p(t_{1}^{n}|w_{1}^{n})
+\]
+
+\end_inset
+
+can be found by the 
+\series bold
+Viterbi
+\series default
+ algorithm.
+\end_layout
+
+\begin_layout Itemize
+NLTK: 
+\family typewriter
+nltk.parse.viterbi(myText)
+\end_layout
+
+\begin_layout Itemize
+Gibbs sampling can be used to draw samples from the posterior 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula 
+\[
+p(t_{1}^{n}|w_{1}^{n})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\end_body
+\end_document

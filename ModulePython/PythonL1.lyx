@@ -1,0 +1,1435 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass beamer
+\begin_preamble
+\setcounter{MaxMatrixCols}{10}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{mathpazo}
+\usepackage{hyperref}
+\usepackage{multimedia}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\definecolor{RawSienna}{cmyk}{0,0.87,0.82,0.31}
+\definecolor{gray97}{cmyk}{0,0,0,0.03}
+\definecolor{robinsegg}{cmyk}{0.18,0.04,0,0.07}
+\definecolor{cola}{cmyk}{0,0.315,0.35,0.155}
+
+\newenvironment{stepenumerate}{\begin{enumerate}[<+->]}{\end{enumerate}}
+\newenvironment{stepitemize}{\begin{itemize}[<+->]}{\end{itemize} }
+\newenvironment{stepenumeratewithalert}{\begin{enumerate}[<+-| alert@+>]}{\end{enumerate}}
+\newenvironment{stepitemizewithalert}{\begin{itemize}[<+-| alert@+>]}{\end{itemize} }
+\usecolortheme[named=RawSienna]{structure}
+%\usecolortheme[RGB={205,0,0}]{structure}
+\setbeamertemplate{navigation symbols}{}
+\useoutertheme{infolines}
+\usetheme{default}
+\setbeamertemplate{blocks}[shadow=true]
+%\setbeamerfont{structure}{shape=\itshape}
+\usefonttheme{structuresmallcapsserif}
+\setbeamertemplate{background canvas}{
+ % \ifnum \thepage>0 \relax % we are on the first page
+%\includegraphics[width=\paperwidth,height=\paperheight]{/home/mv/Dropbox/Foton/IconsWallpaper/greyribbonLighter.jpg}
+ % \else
+ 	% No background for page 2 and onwards
+ % \fi
+}
+\end_preamble
+\options xcolor=svgnames
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman palatino
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_amsmath 1
+\use_esint 0
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+\begin_inset Argument
+status open
+
+\begin_layout Plain Layout
+Text Mining
+\end_layout
+
+\end_inset
+
+Text Mining
+\begin_inset Newline newline
+\end_inset
+
+Intro to Python
+\end_layout
+
+\begin_layout Author
+\begin_inset Argument
+status open
+
+\begin_layout Plain Layout
+Mattias Villani
+\end_layout
+
+\end_inset
+
+Mattias Villani
+\end_layout
+
+\begin_layout Institute
+
+\series bold
+\begin_inset Argument
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Statistics, LiU
+\end_layout
+
+\end_inset
+
+Statistics
+\begin_inset Newline newline
+\end_inset
+
+Dept.
+ of Computer and Information Science
+\begin_inset Newline newline
+\end_inset
+
+Linköping University 
+\end_layout
+
+\begin_layout Date
+\begin_inset space \thinspace{}
+\end_inset
+
+
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+Overview
+\end_layout
+
+\begin_layout Itemize
+What is Python? How is it special?
+\end_layout
+
+\begin_layout Itemize
+Python's objects
+\end_layout
+
+\begin_layout Itemize
+If-else, loops and list comprehensions
+\end_layout
+
+\begin_layout Itemize
+Functions
+\end_layout
+
+\begin_layout Itemize
+Classes
+\end_layout
+
+\begin_layout Itemize
+Modules
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+What is Python?
+\end_layout
+
+\begin_layout Itemize
+First version in 1991
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+High-level language
+\end_layout
+
+\begin_layout Itemize
+Emphasizes 
+\series bold
+readability
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Interpreted
+\series default
+ (bytecode .py and .pyc) [can be compiled via C/Java]
+\end_layout
+
+\begin_layout Itemize
+Automatic memory management
+\end_layout
+
+\begin_layout Itemize
+Strongly dynamically typed
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Functional and/or object-oriented
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Glue
+\series default
+ to other programs (interface to C/C++ or Java etc)
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+The Benevolent Dictator For Life (BDFL) Giudo van Rossum
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename Guido_van_Rossum.jpg
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+Python peculiarites (compared to R/Matlab)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Counting begins at 0
+\series default
+.
+\end_layout
+
+\begin_layout Itemize
+myVector[0:2] returns the first and second element, but not the third.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $3/2=1$
+\end_inset
+
+.
+ 
+\series bold
+Integer division
+\series default
+.
+ 
+\family typewriter
+from __future__ import division
+\family default
+.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Indentation matters!
+\end_layout
+
+\begin_layout Itemize
+Can import specific functions from a module.
+\end_layout
+
+\begin_layout Itemize
+Some variable 
+\series bold
+assignments
+\series default
+ are 
+\series bold
+by reference
+\series default
+, others are 
+\series bold
+by copy
+\series default
+.
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+a = b = 1
+\family default
+ assigns 1 to both 
+\family typewriter
+a
+\family default
+ and 
+\family typewriter
+b
+\family default
+.
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+Python's objects
+\end_layout
+
+\begin_layout Itemize
+Built-in types: 
+\series bold
+numbers
+\series default
+, 
+\series bold
+strings
+\series default
+, 
+\series bold
+lists
+\series default
+, 
+\series bold
+dictionaries
+\series default
+, 
+\series bold
+tuples
+\series default
+ and 
+\series bold
+files
+\series default
+.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Vectors
+\series default
+, 
+\series bold
+arrays
+\series default
+ and 
+\series bold
+matrices
+\series default
+ are available in the 
+\series bold
+numpy
+\series default
+/
+\series bold
+scipy
+\series default
+ modules.
+\end_layout
+
+\begin_layout Itemize
+Python is a 
+\series bold
+strongly
+\series default
+ 
+\series bold
+typed
+\series default
+ language.
+ 'mattias' + 3 gives an error.
+\end_layout
+
+\begin_layout Itemize
+Python is a 
+\series bold
+dynamically type
+\series default
+d language.
+ No need to declare a variables type before it is used.
+ Python figures out the object's type.
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+Strings
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+s = 'Spam'
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+s[0]
+\family default
+ returns first letter, 
+\family typewriter
+s[-2]
+\family default
+ return next to last letter.
+ 
+\family typewriter
+s[0:2]
+\family default
+ returns first 
+\series bold
+two
+\series default
+ letter.
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+len(s)
+\family default
+ returns the number of letters.
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+s.lower(), s.upper(), s.count('m'), s.endswith('am'), ...
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Which methods are available for my object?
+\series default
+ Try in Spyder: 
+\family typewriter
+type s.
+
+\family default
+ followed by TAB.
+\end_layout
+
+\begin_layout Itemize
++ operator 
+\series bold
+concatenates strings
+\series default
+.
+\end_layout
+
+\begin_layout Itemize
+(behind the scenes: the string object has an __add__ method: 
+\family typewriter
+s.__add__(anotherString)
+\family default
+)
+\end_layout
+
+\begin_layout Itemize
+sentence = 'Guido is the benevolent dictator for life'.
+ 
+\series bold
+sentence.split()
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+s*3
+\family default
+ returns 
+\family typewriter
+'SpamSpamSpam'
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+The list object
+\end_layout
+
+\begin_layout Itemize
+A list is a 
+\series bold
+container of several variables
+\series default
+, possibly of different types.
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+myList = ['spam','spam','bacon',2]
+\end_layout
+
+\begin_layout Itemize
+The list object has several associated 
+\series bold
+methods
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\family typewriter
+myList.append('egg')
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+myList.count('spam')
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+myList.sort()
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
++ operator concatenates lists: 
+\family typewriter
+myList + myOtherList 
+\family default
+merges the two lists as one list.
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+The list object
+\end_layout
+
+\begin_layout Itemize
+Extract elements from a list: 
+\family typewriter
+myList[1]
+\end_layout
+
+\begin_layout Itemize
+Lists inside lists: 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\family typewriter
+myOtherList = ['monty','Python']
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+myList[1] = myOtherList
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+myList[1] 
+\family default
+returns the list
+\family typewriter
+ ['monty','Python']
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+myList[1][1]
+\family default
+ returns the string 'Python'
+\end_layout
+
+\end_deeper
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+Python's objects: vectors and arrays (and matrices)
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+from scipy import * 
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+x = array([1,7,3])
+\end_layout
+
+\begin_layout Itemize
+2-dimensional 
+\series bold
+array
+\series default
+ (matrix): 
+\family typewriter
+X = array([[2,3],[4,5]])
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Indexing matrices
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+First row: 
+\family typewriter
+X[0,]
+\end_layout
+
+\begin_layout Itemize
+Second column: 
+\family typewriter
+X[,1]
+\end_layout
+
+\begin_layout Itemize
+Element in position 1,2: 
+\family typewriter
+X[0,1]
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Array 
+\series bold
+multiplication
+\series default
+ (*) is element-wise.
+\end_layout
+
+\begin_layout Itemize
+There is also a 
+\series bold
+matrix object
+\series default
+: 
+\family typewriter
+\series bold
+X = matrix([[2,3],[4,5]])
+\end_layout
+
+\begin_layout Itemize
+For matrix objects multplication (*) is matrix multiplication.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Arrays are recommended
+\series default
+ (not matrices).
+\end_layout
+
+\begin_layout Itemize
+Submodule 
+\series bold
+scipy.linalg
+\series default
+ contains a lot of 
+\series bold
+matrix-functions
+\series default
+ (
+\family typewriter
+det(), inv(), eig()
+\family default
+ etc).
+ I recommend: 
+\family typewriter
+from scipy.linalg import *
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+Python's objects: dictionaries
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Unordered
+\series default
+ collection of objects (elements).
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+myDict = {'Leif':23, 'Dag':17, 'Lyam':12}
+\end_layout
+
+\begin_layout Itemize
+Elements are 
+\series bold
+accessed by keyword not by index
+\series default
+ (offset): 
+\family typewriter
+myDict['Dag']
+\family default
+ returns 17.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Can contain any object
+\series default
+: 
+\family typewriter
+myDict = {'Leif':[23,14], 'Dag':17, 'Lyam':[12,29]}.
+ myDict['Leif'][1]
+\family default
+ returns 14.
+\end_layout
+
+\begin_layout Itemize
+Numbers can also be used as keys: 
+\family typewriter
+myDict = {2:'contents of box2', 4:'content of box 4', 'blackbox':10}
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+myDict.keys()
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+myDict.values()
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+myDict.items()
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+Python's objects: tuples
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+myTuple = (3,4,'mattias')
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Like lists, but immutable
+\series default
+ (cannot change elements are creation)
+\end_layout
+
+\begin_layout Itemize
+Why?
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Faster than lists
+\end_layout
+
+\begin_layout Itemize
+Protected from change
+\end_layout
+
+\begin_layout Itemize
+Can be used as keys in dictionaries
+\end_layout
+
+\begin_layout Itemize
+Multiple return object from function
+\end_layout
+
+\begin_layout Itemize
+Swapping variable content 
+\family typewriter
+(a, b) = (b, a) 
+\family default
+[
+\family typewriter
+a,b = b,a 
+\family default
+also works]
+\end_layout
+
+\begin_layout Itemize
+String formatting: 
+\family typewriter
+name = "Mattias"; age = 39; "My name is %s and I am %d years old" % (name
+ , age)
+\end_layout
+
+\begin_layout Itemize
+Sequence unpacking 
+\family typewriter
+a , b, c = myTuple
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\family typewriter
+list(myTuple)
+\family default
+ returns myTuple as a list.
+ 
+\family typewriter
+tuple(myList)
+\family default
+ does the opposite.
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+Python's objects: Sets
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Set
+\series default
+.
+ Contains objects in 
+\series bold
+no order
+\series default
+ with 
+\series bold
+no identification
+\series default
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+With a 
+\series bold
+sequence
+\series default
+, elements are ordered and identified by position.
+ 
+\family typewriter
+myVector[2]
+\end_layout
+
+\begin_layout Itemize
+With a 
+\series bold
+dictionary
+\series default
+, elements are unordered but identified by some key.
+ 
+\family typewriter
+myDict['myKey']
+\end_layout
+
+\begin_layout Itemize
+With a 
+\series bold
+set
+\series default
+, elements stand for themselves.
+ No indexing, no key-reference.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Declaration: 
+\family typewriter
+fib=set( (1,1,2,3,5,8,13) )
+\family default
+\series bold
+ 
+\series default
+returns the 
+\family typewriter
+set ([1, 2, 3, 5, 8, 13])
+\end_layout
+
+\begin_layout Itemize
+Supported methods: 
+\family typewriter
+len(s), x in s, set1 < set2, union, intersection, add, remove, pop ...
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+
+\series bold
+Boolean operators
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+True/False
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+and
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+or 
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+not
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+a = True; b = False;
+\family default
+ 
+\family typewriter
+a and b
+\family default
+ [returns False].
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+
+\series bold
+If-else constructs
+\end_layout
+
+\begin_layout Block
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+{if-else statement}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Block
+a =
+\series bold
+
+\begin_inset Formula $1$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Block
+if a==1:
+\end_layout
+
+\begin_layout Block
+\begin_inset space \hspace{}
+\length 0.5cm
+\end_inset
+
+print('a is one')
+\end_layout
+
+\begin_layout Block
+elif a==2:
+\end_layout
+
+\begin_layout Block
+\begin_inset space \hspace{}
+\length 0.5cm
+\end_inset
+
+print('a is two)
+\end_layout
+
+\begin_layout Block
+else:
+\end_layout
+
+\begin_layout Block
+\begin_inset space \hspace{}
+\length 0.5cm
+\end_inset
+
+print('a is not one or two')
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Switch
+\series default
+ 
+\series bold
+statements
+\series default
+ via dictionaries (see Jackson's Python book).
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+
+\series bold
+While loops
+\end_layout
+
+\begin_layout Block
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+{while loop}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Block
+
+\family typewriter
+a =
+\series bold
+
+\begin_inset Formula $10$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Block
+
+\family typewriter
+while a>1:
+\end_layout
+
+\begin_layout Block
+
+\family typewriter
+\begin_inset space \hspace{}
+\length 0.5cm
+\end_inset
+
+print('bigger than one')
+\end_layout
+
+\begin_layout Block
+
+\family typewriter
+\begin_inset space \hspace{}
+\length 0.5cm
+\end_inset
+
+a = a - 1
+\end_layout
+
+\begin_layout Block
+
+\family typewriter
+else:
+\end_layout
+
+\begin_layout Block
+
+\family typewriter
+\begin_inset space \hspace{}
+\length 0.5cm
+\end_inset
+
+print('smaller than one')
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+
+\series bold
+Loops
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+for loops can iterate over any iterable
+\series default
+.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+iterables
+\series default
+: strings, lists, tuples
+\end_layout
+
+\begin_layout Block
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+{for loop}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Block
+
+\family typewriter
+word = 'mattias'
+\end_layout
+
+\begin_layout Block
+
+\family typewriter
+for letter in word:
+\end_layout
+
+\begin_layout Block
+
+\family typewriter
+\begin_inset space \hspace{}
+\length 0.5cm
+\end_inset
+
+print(letter)
+\end_layout
+
+\begin_layout Block
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+{for loop 2}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Block
+
+\family typewriter
+myList = ['']*10 
+\end_layout
+
+\begin_layout Block
+
+\family typewriter
+for i in range(10):
+\end_layout
+
+\begin_layout Block
+
+\family typewriter
+\begin_inset space \hspace{}
+\length 0.5cm
+\end_inset
+
+myList = 'mattias' + str(i)
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+
+\series bold
+List comprehensions
+\end_layout
+
+\begin_layout Itemize
+Set definition in mathematics
+\begin_inset Formula 
+\[
+\{x\text{ for}\text{ }x\in\mathcal{X}\}
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $\mathcal{X}$
+\end_inset
+
+ is some a finite set.
+\begin_inset Formula 
+\[
+\{f(x)\text{ for}\text{ }x\in\mathcal{X}\}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+List comprehension in Python: 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\family typewriter
+myList = [x for x in range(10)]
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+myList = [sin(x) for x in range(10)] 
+\family default
+(don't forget 
+\family typewriter
+from math import sin
+\family default
+)
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+myList = [x + y for x in linspace(0.1,1,10) for y in linspace(10,100,10)]
+\family default
+ (
+\family typewriter
+from scipy import linspace
+\family default
+)
+\end_layout
+
+\end_deeper
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+Defining functions and classes
+\end_layout
+
+\begin_layout Block
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+{Defining functions}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Block
+
+\family typewriter
+def mySquare(x): 
+\end_layout
+
+\begin_layout Block
+
+\family typewriter
+\begin_inset space \hspace{}
+\length 0.5cm
+\end_inset
+
+return x**2
+\end_layout
+
+\begin_layout Block
+
+\family typewriter
+\begin_inset space \hspace{}
+\length 0.5cm
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Calling the function: 
+\family typewriter
+mySquare(x)
+\end_layout
+
+\begin_layout Itemize
+Classes are defined similarly using the self object.
+\end_layout
+
+\begin_layout Itemize
+Make you own module by putting several functions in a .py file.
+ Then import what you need.
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\begin_layout BeginFrame
+Misc
+\end_layout
+
+\begin_layout Itemize
+Comments one individual lines starts with #
+\end_layout
+
+\begin_layout Itemize
+Comments spanning over multiple lines """This is a looooong comment
+\begin_inset Quotes erd
+\end_inset
+
+
+\begin_inset Quotes erd
+\end_inset
+
+
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\end_body
+\end_document
