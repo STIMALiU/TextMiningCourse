@@ -1,5 +1,5 @@
-#LyX 2.0 created this file. For more info see http://www.lyx.org/
-\lyxformat 413
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
 \begin_document
 \begin_header
 \textclass beamer
@@ -47,13 +47,13 @@
 \font_roman palatino
 \font_sans default
 \font_typewriter default
+\font_math auto
 \font_default_family default
 \use_non_tex_fonts false
 \font_sc false
 \font_osf false
 \font_sf_scale 100
 \font_tt_scale 100
-
 \graphics default
 \default_output_format default
 \output_sync 0
@@ -64,15 +64,24 @@
 \use_hyperref false
 \papersize default
 \use_geometry true
-\use_amsmath 1
-\use_esint 0
-\use_mhchem 1
-\use_mathdots 1
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 0
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
 \cite_engine basic
+\cite_engine_type default
+\biblio_style plain
 \use_bibtopic false
 \use_indices false
 \paperorientation portrait
 \suppress_date false
+\justification true
 \use_refstyle 0
 \index Index
 \shortcut idx
@@ -96,7 +105,7 @@
 \begin_body
 
 \begin_layout Title
-\begin_inset Argument
+\begin_inset Argument 1
 status open
 
 \begin_layout Plain Layout
@@ -117,33 +126,33 @@ Lecture 2
 \end_layout
 
 \begin_layout Author
-\begin_inset Argument
+\begin_inset Argument 1
 status open
 
 \begin_layout Plain Layout
-Mattias Villani
+Magnusson, Villani
 \end_layout
 
 \end_inset
 
-Mattias Villani
+Måns Magnusson, Mattias Villani
 \end_layout
 
 \begin_layout Institute
 
 \series bold
-\begin_inset Argument
+\begin_inset Argument 1
 status open
 
 \begin_layout Plain Layout
 
 \series bold
-Statistics, LiU
+StiMa, LiU
 \end_layout
 
 \end_inset
 
-Division of Statistics
+Division of Statistics and Machine Learning
 \begin_inset Newline newline
 \end_inset
 
@@ -162,14 +171,20 @@ Linköping University
 
 \end_layout
 
-\begin_layout EndFrame
+\begin_layout Frame
+\begin_inset Argument 4
+status open
 
-\end_layout
-
-\begin_layout BeginFrame
+\begin_layout Plain Layout
 Overview
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
 \begin_layout Itemize
 Text classification
 \end_layout
@@ -182,14 +197,25 @@ Regularization
 R's tm package (demo) [TMPackageDemo.R]
 \end_layout
 
-\begin_layout EndFrame
+\end_deeper
+\begin_layout Separator
 
 \end_layout
 
-\begin_layout BeginFrame
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
 Supervised classification
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
 \begin_layout Itemize
 Predict the 
 \series bold
@@ -208,6 +234,10 @@ features
 
 \begin_layout Itemize
 Feature = Explanatory variable = Predictor = Covariate
+\end_layout
+
+\begin_layout Pause
+
 \end_layout
 
 \begin_layout Itemize
@@ -244,6 +274,10 @@ Bankruptcy:
 \end_layout
 
 \end_deeper
+\begin_layout Pause
+
+\end_layout
+
 \begin_layout Itemize
 Multi-class classification: 
 \begin_inset Formula $s\in\{1,2,...,K\}$
@@ -270,14 +304,25 @@ POS-tagging:
 \end_layout
 
 \end_deeper
-\begin_layout EndFrame
+\end_deeper
+\begin_layout Separator
 
 \end_layout
 
-\begin_layout BeginFrame
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
 Supervised classification, cont.
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
 \begin_layout Itemize
 Example data:
 \end_layout
@@ -303,13 +348,13 @@ Bjarne Stroustrup is a 62-years old computer scientist ...
 
 \begin_inset Tabular
 <lyxtabular version="3" rows="5" columns="6">
-<features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
@@ -691,6 +736,10 @@ No
 \end_layout
 
 \end_deeper
+\begin_layout Pause
+
+\end_layout
+
 \begin_layout Itemize
 Classification: construct prediction machine
 \begin_inset Formula 
@@ -715,14 +764,25 @@ More generally:
 
 \end_layout
 
-\begin_layout EndFrame
+\end_deeper
+\begin_layout Separator
 
 \end_layout
 
-\begin_layout BeginFrame
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
 Features from text documents
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
 \begin_layout Itemize
 Any quantity computed from a document can used as a 
 \series bold
@@ -769,14 +829,14 @@ etc etc
 \size tiny
 \begin_inset Tabular
 <lyxtabular version="3" rows="5" columns="7">
-<features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
@@ -1200,10 +1260,7 @@ News
 \end_layout
 
 \end_deeper
-\begin_layout Standard
-\begin_inset VSpace medskip
-\end_inset
-
+\begin_layout Pause
 
 \end_layout
 
@@ -1215,14 +1272,25 @@ Constructing clever
  is the name of the game!
 \end_layout
 
-\begin_layout EndFrame
+\end_deeper
+\begin_layout Separator
 
 \end_layout
 
-\begin_layout BeginFrame
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
 Supervised learning for classification
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
 \begin_layout Standard
 \align center
 \begin_inset Graphics
@@ -1234,19 +1302,30 @@ Supervised learning for classification
 
 \end_layout
 
-\begin_layout EndFrame
+\end_deeper
+\begin_layout Separator
 
 \end_layout
 
-\begin_layout BeginFrame
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
 The Bayesian classifier
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
 \begin_layout Itemize
 Bayesian classification
 \begin_inset Formula 
 \[
-\underset{s\in S}{\mathrm{argmax}}\: p(s|\mathbf{x})
+\underset{s\in S}{\mathrm{argmax}}\:p(s|\mathbf{x})
 \]
 
 \end_inset
@@ -1256,6 +1335,10 @@ where
 \end_inset
 
  is a feature vector.
+\end_layout
+
+\begin_layout Pause
+
 \end_layout
 
 \begin_layout Itemize
@@ -1274,11 +1357,15 @@ p(s|\mathbf{x})=\frac{p(\mathbf{x}|s)p(s)}{p(\mathbf{x})}\propto p(\mathbf{x}|s)
 Bayesian classification
 \begin_inset Formula 
 \[
-\underset{s\in S}{\mathrm{argmax}}\: p(\mathbf{x}|s)p(s)
+\underset{s\in S}{\mathrm{argmax}}\:p(\mathbf{x}|s)p(s)
 \]
 
 \end_inset
 
+
+\end_layout
+
+\begin_layout Pause
 
 \end_layout
 
@@ -1289,7 +1376,15 @@ Bayesian classification
  can be easily estimated from training data by relative frequencies.
 \end_layout
 
+\begin_layout Pause
+
+\end_layout
+
 \begin_layout Itemize
+
+\series bold
+Main problem: 
+\series default
 Even with binary features [
 \emph on
 has(word)
@@ -1313,14 +1408,25 @@ has(word)
  is huge (=data are sparse).
 \end_layout
 
-\begin_layout EndFrame
+\end_deeper
+\begin_layout Separator
 
 \end_layout
 
-\begin_layout BeginFrame
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
 Naive Bayes
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
 \begin_layout Itemize
 
 \series bold
@@ -1357,6 +1463,10 @@ Naive Bayes solution
 
 \end_layout
 
+\begin_layout Pause
+
+\end_layout
+
 \begin_layout Itemize
 With binary features, 
 \begin_inset Formula $p(x_{j}|s)$
@@ -1370,6 +1480,10 @@ With binary features,
 
 \end_inset
 
+
+\end_layout
+
+\begin_layout Pause
 
 \end_layout
 
@@ -1395,14 +1509,25 @@ news,
 
 \end_layout
 
-\begin_layout EndFrame
+\end_deeper
+\begin_layout Separator
 
 \end_layout
 
-\begin_layout BeginFrame
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
 Naive Bayes
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
 \begin_layout Itemize
 
 \series bold
@@ -1447,6 +1572,10 @@ Estimating
 \end_layout
 
 \end_deeper
+\begin_layout Pause
+
+\end_layout
+
 \begin_layout Itemize
 Finding the 
 \series bold
@@ -1464,6 +1593,10 @@ most discriminatory features
 
 \end_layout
 
+\begin_layout Pause
+
+\end_layout
+
 \begin_layout Itemize
 
 \series bold
@@ -1476,8 +1609,8 @@ Problem with NB
  double-counting the evidence of individual features.
 \end_layout
 
-\begin_layout Itemize
-Extreme example: what happens with naive Bayes if you duplicate a feature?
+\begin_layout Pause
+
 \end_layout
 
 \begin_layout Itemize
@@ -1488,14 +1621,25 @@ Advantages of NB
 : simple and fast, yet often surprising accurate classifications.
 \end_layout
 
-\begin_layout EndFrame
+\end_deeper
+\begin_layout Separator
 
 \end_layout
 
-\begin_layout BeginFrame
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
 Multinomial regression
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
 \begin_layout Itemize
 Logistic regression (Maximum Entropy/
 \series bold
@@ -1538,6 +1682,10 @@ Classification rule: Choose
  Loss/Utility function.
 \end_layout
 
+\begin_layout Pause
+
+\end_layout
+
 \begin_layout Itemize
 Multinomial regression for multi-class data with 
 \begin_inset Formula $K$
@@ -1566,6 +1714,17 @@ Classification
 
 \end_layout
 
+\begin_layout Pause
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $P\times(S-1)$
+\end_inset
+
+ number of coefficients
+\end_layout
+
 \begin_layout Itemize
 Classification with text data is like any multi-class regression problem
  ...
@@ -1576,17 +1735,36 @@ Wide data
 .
 \end_layout
 
-\begin_layout EndFrame
+\begin_layout Itemize
+Similar to genomics
+\end_layout
+
+\end_deeper
+\begin_layout Separator
 
 \end_layout
 
-\begin_layout BeginFrame
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
 Regularization - Variable selection
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
 \begin_layout Itemize
 Select a subset of the covariates.
  
+\end_layout
+
+\begin_layout Pause
+
 \end_layout
 
 \begin_layout Itemize
@@ -1603,6 +1781,10 @@ backward
 selection
 \series default
 .
+\end_layout
+
+\begin_layout Pause
+
 \end_layout
 
 \begin_layout Itemize
@@ -1668,13 +1850,13 @@ Example
 \size tiny
 \begin_inset Tabular
 <lyxtabular version="3" rows="2" columns="6">
-<features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
@@ -1830,14 +2012,25 @@ Lex.
 
 \end_layout
 
-\begin_layout EndFrame
+\end_deeper
+\begin_layout Separator
 
 \end_layout
 
-\begin_layout BeginFrame
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
 Regularization - Shrinkage
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
 \begin_layout Itemize
 Keep all covariates, but 
 \series bold
@@ -1874,6 +2067,10 @@ penalty parameter
 .
 \end_layout
 
+\begin_layout Pause
+
+\end_layout
+
 \begin_layout Itemize
 Maximize 
 \begin_inset Formula $L_{Ridge}(\beta)$
@@ -1895,12 +2092,20 @@ Maximize
 .
 \end_layout
 
+\begin_layout Pause
+
+\end_layout
+
 \begin_layout Itemize
 
 \series bold
 Ridge regression
 \series default
  if regression is linear.
+\end_layout
+
+\begin_layout Pause
+
 \end_layout
 
 \begin_layout Itemize
@@ -1915,6 +2120,10 @@ Bayesian prior
 .
 \end_layout
 
+\begin_layout Pause
+
+\end_layout
+
 \begin_layout Itemize
 \begin_inset Formula $\lambda$
 \end_inset
@@ -1922,14 +2131,25 @@ Bayesian prior
  can be estimated by cross-validation or Bayesian methods.
 \end_layout
 
-\begin_layout EndFrame
+\end_deeper
+\begin_layout Separator
 
 \end_layout
 
-\begin_layout BeginFrame
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
 Lasso - Shrinkage and variable selection
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
 \begin_layout Itemize
 Replace Ridge penalty
 \begin_inset Formula 
@@ -1966,6 +2186,10 @@ Lasso estimator
 .
 \end_layout
 
+\begin_layout Pause
+
+\end_layout
+
 \begin_layout Itemize
 Some parameters are shrunked exactly to zero 
 \begin_inset Formula $\Rightarrow$
@@ -1990,20 +2214,39 @@ p(\beta_{i})=\frac{\text{\lambda}}{2}\exp\left(\lambda\left|\beta_{i}-0\right|\r
 
 \end_layout
 
-\begin_layout EndFrame
+\end_deeper
+\begin_layout Separator
 
 \end_layout
 
-\begin_layout BeginFrame
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
 Support vector machines
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
 \begin_layout Itemize
-One of the best classifiers around.
+One of the best off-the-shelf classifiers around.
+\end_layout
+
+\begin_layout Pause
+
 \end_layout
 
 \begin_layout Itemize
 Finds the line in covariate space that maximally separates the two classes.
+\end_layout
+
+\begin_layout Pause
+
 \end_layout
 
 \begin_layout Itemize
@@ -2013,6 +2256,10 @@ When the points are not linearly separable: add a slack-variable
 
  for each observation.
  Allow misclassification, but make it costly.
+\end_layout
+
+\begin_layout Pause
+
 \end_layout
 
 \begin_layout Itemize
@@ -2028,12 +2275,24 @@ Non-linear separing curves can be obtained by basis expansion (think about
  and so on)
 \end_layout
 
+\begin_layout Pause
+
+\end_layout
+
 \begin_layout Itemize
 The kernel trick makes it possible to handle many covariates.
 \end_layout
 
+\begin_layout Pause
+
+\end_layout
+
 \begin_layout Itemize
-Drawback: not so easily extended to multi-class.
+
+\series bold
+Drawback:
+\series default
+ not so easily extended to multi-class.
 \end_layout
 
 \begin_layout Itemize
@@ -2050,36 +2309,58 @@ or
 nltk.classify.svm]
 \end_layout
 
-\begin_layout EndFrame
+\end_deeper
+\begin_layout Separator
 
 \end_layout
 
-\begin_layout BeginFrame
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
 Linear SVMs
 \end_layout
-
-\begin_layout Standard
-\align center
-\begin_inset Graphics
-	filename Svm_separating_hyperplanes_(SVG).svg
-	lyxscale 20
-	scale 21
 
 \end_inset
 
 
 \end_layout
 
-\begin_layout EndFrame
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename Svm_max_sep_hyperplane_with_margin.png
+	lyxscale 20
+	scale 20
+
+\end_inset
+
 
 \end_layout
 
-\begin_layout BeginFrame
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
 Regression trees and random forest
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
 \begin_layout Itemize
-Binary partioning tree.
+Binary partitioning tree.
  
 \end_layout
 
@@ -2107,6 +2388,10 @@ The optimal splitting variables and split-points are chosen to minimize
  the mis-classification rate (or other similar measures).
 \end_layout
 
+\begin_layout Pause
+
+\end_layout
+
 \begin_layout Itemize
 
 \series bold
@@ -2119,6 +2404,10 @@ RF
 ) predicts using an average of many small trees.
 \end_layout
 
+\begin_layout Pause
+
+\end_layout
+
 \begin_layout Itemize
 Each tree in RF is grown on a random subset of variables.
  Makes it possible to handle 
@@ -2129,12 +2418,20 @@ many covariates
  Parallel.
 \end_layout
 
+\begin_layout Pause
+
+\end_layout
+
 \begin_layout Itemize
 Advantage of RF: better predictions than trees.
 \end_layout
 
 \begin_layout Itemize
 RF harder to interpret, but provide variable importance scores.
+\end_layout
+
+\begin_layout Pause
+
 \end_layout
 
 \begin_layout Itemize
@@ -2157,14 +2454,25 @@ randomForest
  (RF).
 \end_layout
 
-\begin_layout EndFrame
+\end_deeper
+\begin_layout Separator
 
 \end_layout
 
-\begin_layout BeginFrame
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
 Regression trees
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
 \begin_layout Standard
 \align center
 \begin_inset Graphics
@@ -2176,14 +2484,25 @@ Regression trees
 
 \end_layout
 
-\begin_layout EndFrame
+\end_deeper
+\begin_layout Separator
 
 \end_layout
 
-\begin_layout BeginFrame
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
 Evaluating a classifier: Accuracy and Error
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
 \begin_layout Itemize
 
 \series bold
@@ -2196,11 +2515,11 @@ Confusion
 \align center
 \begin_inset Tabular
 <lyxtabular version="3" rows="4" columns="4">
-<features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" usebox="none">
 \begin_inset Text
@@ -2372,6 +2691,10 @@ tp = true positive, fp = false positive
 fn = false negative, tn = true negative
 \end_layout
 
+\begin_layout Pause
+
+\end_layout
+
 \begin_layout Itemize
 
 \series bold
@@ -2385,6 +2708,10 @@ Accuracy
 
 \end_inset
 
+
+\end_layout
+
+\begin_layout Pause
 
 \end_layout
 
@@ -2404,14 +2731,25 @@ Error
 
 \end_layout
 
-\begin_layout EndFrame
+\end_deeper
+\begin_layout Separator
 
 \end_layout
 
-\begin_layout BeginFrame
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
 Accuracy can be misleading
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
 \begin_layout Itemize
 Accuracy is problematic when tn is large.
  High accuracy can then be obtained by not acting at all!
@@ -2421,11 +2759,11 @@ Accuracy is problematic when tn is large.
 \align center
 \begin_inset Tabular
 <lyxtabular version="3" rows="4" columns="4">
-<features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" usebox="none">
 \begin_inset Text
@@ -2589,14 +2927,25 @@ Not Spam
 
 \end_layout
 
-\begin_layout EndFrame
+\end_deeper
+\begin_layout Separator
 
 \end_layout
 
-\begin_layout BeginFrame
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
 Evaluating a classifier: the F-measure
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
 \begin_layout Itemize
 
 \series bold
@@ -2609,11 +2958,11 @@ Confusion
 \align center
 \begin_inset Tabular
 <lyxtabular version="3" rows="4" columns="4">
-<features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" usebox="none">
 \begin_inset Text
@@ -2777,6 +3126,10 @@ tn
 
 \end_layout
 
+\begin_layout Pause
+
+\end_layout
+
 \begin_layout Itemize
 
 \series bold
@@ -2790,6 +3143,10 @@ Precision
 
 \end_inset
 
+
+\end_layout
+
+\begin_layout Pause
 
 \end_layout
 
@@ -2809,6 +3166,10 @@ Recall
 
 \end_layout
 
+\begin_layout Pause
+
+\end_layout
+
 \begin_layout Itemize
 
 \series bold
@@ -2825,9 +3186,6 @@ F=\frac{1}{\alpha\frac{1}{Precision}+(1-\alpha)\frac{1}{Recall}}
 
 \end_layout
 
-\begin_layout EndFrame
-
-\end_layout
-
+\end_deeper
 \end_body
 \end_document
