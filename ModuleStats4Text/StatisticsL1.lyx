@@ -1,5 +1,5 @@
-#LyX 2.0 created this file. For more info see http://www.lyx.org/
-\lyxformat 413
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
 \begin_document
 \begin_header
 \textclass beamer
@@ -39,6 +39,9 @@
 \end_preamble
 \options xcolor=svgnames
 \use_default_options false
+\begin_modules
+knitr
+\end_modules
 \maintain_unincluded_children false
 \language english
 \language_package default
@@ -47,13 +50,13 @@
 \font_roman palatino
 \font_sans default
 \font_typewriter default
+\font_math auto
 \font_default_family default
 \use_non_tex_fonts false
 \font_sc false
 \font_osf false
 \font_sf_scale 100
 \font_tt_scale 100
-
 \graphics default
 \default_output_format default
 \output_sync 0
@@ -64,15 +67,24 @@
 \use_hyperref false
 \papersize default
 \use_geometry true
-\use_amsmath 1
-\use_esint 0
-\use_mhchem 1
-\use_mathdots 1
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 0
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
 \cite_engine basic
+\cite_engine_type default
+\biblio_style plain
 \use_bibtopic false
 \use_indices false
 \paperorientation portrait
 \suppress_date false
+\justification true
 \use_refstyle 0
 \index Index
 \shortcut idx
@@ -96,7 +108,7 @@
 \begin_body
 
 \begin_layout Title
-\begin_inset Argument
+\begin_inset Argument 1
 status open
 
 \begin_layout Plain Layout
@@ -117,33 +129,33 @@ Lecture 1
 \end_layout
 
 \begin_layout Author
-\begin_inset Argument
+\begin_inset Argument 1
 status open
 
 \begin_layout Plain Layout
-Mattias Villani
+Magnusson, Villani
 \end_layout
 
 \end_inset
 
-Mattias Villani
+Måns Magnusson, Mattias Villani
 \end_layout
 
 \begin_layout Institute
 
 \series bold
-\begin_inset Argument
+\begin_inset Argument 1
 status open
 
 \begin_layout Plain Layout
 
 \series bold
-Statistics, LiU
+StiMa, LiU
 \end_layout
 
 \end_inset
 
-Division of Statistics
+Division of Statistics and machine learning
 \begin_inset Newline newline
 \end_inset
 
@@ -162,14 +174,95 @@ Linköping University
 
 \end_layout
 
-\begin_layout EndFrame
+\begin_layout Standard
+
+\lang swedish
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<echo=FALSE>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+# Paket
+\end_layout
+
+\begin_layout Plain Layout
+
+suppressMessages(library(bayesm))
+\end_layout
+
+\begin_layout Plain Layout
+
+suppressMessages(library(ggplot2))
+\end_layout
+
+\begin_layout Plain Layout
+
+suppressMessages(library(grid))
+\end_layout
+
+\begin_layout Plain Layout
+
+set.seed(42)
+\end_layout
+
+\begin_layout Plain Layout
 
 \end_layout
 
-\begin_layout BeginFrame
+\begin_layout Plain Layout
+
+library(devtools)
+\end_layout
+
+\begin_layout Plain Layout
+
+options(scipen = 10, digits = 3)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+source("https://gist.githubusercontent.com/tonglu/9947245/raw/c5334d6dc4af472a0056
+8259a9337b428f1afc80/multiplot.r")
+\end_layout
+
+\begin_layout Plain Layout
+
+source("lecture_code.R")
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
 Overview 'Statistics for Textual Data'
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
 \begin_layout Itemize
 
 \series bold
@@ -181,12 +274,6 @@ Lecture 1
 
 \series bold
 Language models and n-grams
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-Smoothing
 \end_layout
 
 \begin_layout Itemize
@@ -224,14 +311,93 @@ Topic models
 \end_layout
 
 \end_deeper
-\begin_layout EndFrame
+\end_deeper
+\begin_layout Separator
 
 \end_layout
 
-\begin_layout BeginFrame
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Some definitions
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Quote
+A neutron walks into a bar and asks how much for a drink.
+ The bartender replies "for you, no charge".
+\end_layout
+
+\begin_layout Itemize
+Tokens
+\end_layout
+
+\begin_layout Pause
+
+\end_layout
+
+\begin_layout Itemize
+Sentences
+\end_layout
+
+\begin_layout Pause
+
+\end_layout
+
+\begin_layout Itemize
+Types / word types
+\end_layout
+
+\begin_layout Pause
+
+\end_layout
+
+\begin_layout Itemize
+Document
+\end_layout
+
+\begin_layout Pause
+
+\end_layout
+
+\begin_layout Itemize
+Corpus
+\end_layout
+
+\begin_layout Pause
+
+\end_layout
+
+\begin_layout Itemize
+Vocabulary
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
 Language models - predict the next word
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
 \begin_layout Standard
 \align center
 \begin_inset Graphics
@@ -243,14 +409,29 @@ Language models - predict the next word
 
 \end_layout
 
-\begin_layout EndFrame
+\end_deeper
+\begin_layout Frame
 
 \end_layout
 
-\begin_layout BeginFrame
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
 Language models
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
 \begin_layout Itemize
 Let 
 \begin_inset Formula $w_{i}$
@@ -262,21 +443,25 @@ Let
 
 th word in a sentence.
  Let 
-\begin_inset Formula $w_{1}^{k}=w_{1}w_{2}\cdots w_{k}$
+\begin_inset Formula $\mathbf{w}_{1}^{k}=w_{1}w_{2}\cdots w_{k}$
 \end_inset
 
  denote a sentence of 
 \begin_inset Formula $k$
 \end_inset
 
- words.
+ tokens.
+\end_layout
+
+\begin_layout Pause
+
 \end_layout
 
 \begin_layout Itemize
 The probability of a sentence 
 \begin_inset Formula 
 \[
-p(w_{1}^{n})=p(w_{1})\cdot p(w_{2}|w_{1})p(w_{3}|w_{1}^{2})\cdots p(w_{n}|w_{1}^{n-1})
+p(\mathbf{w}_{1}^{n})=p(w_{1})\cdot p(w_{2}|w_{1})\cdot p(w_{3}|\mathbf{w}_{1}^{2})\cdots p(w_{n}|\mathbf{w}_{1}^{n-1})
 \]
 
 \end_inset
@@ -284,11 +469,15 @@ p(w_{1}^{n})=p(w_{1})\cdot p(w_{2}|w_{1})p(w_{3}|w_{1}^{2})\cdots p(w_{n}|w_{1}^
 
 \end_layout
 
+\begin_layout Pause
+
+\end_layout
+
 \begin_layout Itemize
-Probability distribution over the next word in a sentence:
+Probability distribution over the next token in a sentence:
 \begin_inset Formula 
 \[
-p(w_{k}|w_{1}^{k-1})
+p(w_{k}|\mathbf{w}_{1}^{k-1})
 \]
 
 \end_inset
@@ -317,31 +506,38 @@ p(\text{school}|\text{I like to go to the})=0.001
 \end_layout
 
 \begin_layout Itemize
-Add beginning of sentence tags <s>.
+Add beginning of sentence token/tag <s>.
 \end_layout
 
-\begin_layout EndFrame
+\end_deeper
+\begin_layout Separator
 
 \end_layout
 
-\begin_layout BeginFrame
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
 Unigram models
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
 \begin_layout Itemize
 
 \series bold
-Bag-or-words
+Unigram
 \series default
  
 \series bold
-model
+language models
 \series default
- (
-\series bold
-unigram
-\series default
-) ignores the previous words:
+ ignores the previous words:
 \begin_inset Formula 
 \[
 p(w_{n}|w_{1},...,w_{n-1})=p(w_{n})
@@ -352,27 +548,23 @@ p(w_{n}|w_{1},...,w_{n-1})=p(w_{n})
 
 \end_layout
 
+\begin_layout Pause
+
+\end_layout
+
 \begin_layout Itemize
 \begin_inset Formula $p(w_{n})$
 \end_inset
 
- can be estimated by the relative frequency of the word 
-\begin_inset Formula $w_{n}$
-\end_inset
-
- among all 
-\begin_inset Formula $N$
-\end_inset
-
- words in the training corpus (
+ can be estimated using 
 \series bold
 maximum likelihood
 \series default
-, 
+ 
 \series bold
-ML
+(ML
 \series default
-).
+) estimation as:
 \begin_inset Formula 
 \[
 \hat{p}_{ML}(w_{n})=\frac{C(w_{n})}{N}
@@ -380,6 +572,18 @@ ML
 
 \end_inset
 
+where 
+\begin_inset Formula $C(w_{n})$
+\end_inset
+
+ is the number of tokens of word type 
+\begin_inset Formula $w_{n}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Pause
 
 \end_layout
 
@@ -387,14 +591,30 @@ ML
 Simulating a text from a bag-of-words model gives rubbish.
 \end_layout
 
-\begin_layout EndFrame
+\begin_layout Quotation
+Much asks into neutron asks.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Separator
 
 \end_layout
 
-\begin_layout BeginFrame
-Language models - nGrams
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Language models - n-grams
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
 \begin_layout Itemize
 The
 \series bold
@@ -408,6 +628,10 @@ p(w_{n}|w_{1},...,w_{n-1})=p(w_{n}|w_{n-1})
 
 \end_inset
 
+
+\end_layout
+
+\begin_layout Pause
 
 \end_layout
 
@@ -435,9 +659,17 @@ Alternative formulation
 
 \end_layout
 
+\begin_layout Pause
+
+\end_layout
+
 \begin_layout Itemize
 The bigram language model can therefore be estimated from unigram and bigram
  counts.
+\end_layout
+
+\begin_layout Pause
+
 \end_layout
 
 \begin_layout Itemize
@@ -452,12 +684,101 @@ Trigram model
  and so on.
 \end_layout
 
-\begin_layout EndFrame
+\end_deeper
+\begin_layout Separator
 
 \end_layout
 
-\begin_layout BeginFrame
-nGram models in NLTK 
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Evaluating language models
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Quotes eld
+\end_inset
+
+Unsupervised
+\begin_inset Quotes erd
+\end_inset
+
+ models - no ground truth
+\end_layout
+
+\begin_layout Pause
+
+\end_layout
+
+\begin_layout Itemize
+Evaluating language models by 
+\series bold
+Perplexity
+\series default
+ (
+\series bold
+PP
+\series default
+)
+\begin_inset Formula 
+\[
+\mathrm{PP}=\sqrt[N]{\frac{1}{P(w_{1}w_{2}\cdots w_{N})}}=\sqrt[N]{\prod_{i=1}^{N}\frac{1}{P(w_{i}|w_{1}\cdots w_{i-1})}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Minimizing perplexity is the same as maximizing probability of a sentence
+\end_layout
+
+\begin_layout Pause
+
+\end_layout
+
+\begin_layout Itemize
+Evaluate on hold-out test set
+\end_layout
+
+\begin_layout Pause
+
+\end_layout
+
+\begin_layout Itemize
+Not necessarily correlated with human judgement
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Software n-gram models 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Python NLTK
 \end_layout
 
 \begin_layout Itemize
@@ -488,14 +809,45 @@ nGramModel.generate(num_words=50)
 # Simulate a text with 50 words from the model.
 \end_layout
 
-\begin_layout EndFrame
+\begin_layout Standard
+R
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+tm
+\family default
+ package
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+ngram
+\family default
+ package
+\end_layout
+
+\end_deeper
+\begin_layout Separator
 
 \end_layout
 
-\begin_layout BeginFrame
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
 The sparsity problem - unigram case
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
 \begin_layout Itemize
 Maximum likelihood estimator (MLE) for unigram model: 
 \begin_inset Formula 
@@ -509,7 +861,11 @@ where
 \begin_inset Formula $N$
 \end_inset
 
- is the number of words in training corpus.
+ is the number of tokens in training corpus.
+\end_layout
+
+\begin_layout Pause
+
 \end_layout
 
 \begin_layout Itemize
@@ -521,6 +877,10 @@ C(w_{1})=0\;\Rightarrow\;\hat{p}_{ML}(w_{n})=0
 
 \end_inset
 
+
+\end_layout
+
+\begin_layout Pause
 
 \end_layout
 
@@ -549,52 +909,51 @@ where
 \begin_inset Formula $V$
 \end_inset
 
- is the number of words in vocabulary.
+ is the number of word types in vocabulary.
 \end_layout
 
-\begin_layout Itemize
-Evaluating language models by 
-\series bold
-Perplexity
-\series default
- (
-\series bold
-PP
-\series default
-)
-\begin_inset Formula 
-\[
-\mathrm{PP}=\sqrt[N]{\frac{1}{P(w_{1}w_{2}\cdots w_{N})}}=\sqrt[N]{\prod_{i=1}^{N}\frac{1}{P(w_{i}|w_{1}\cdots w_{i-1})}}
-\]
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+The sparsity problem - n-grams
+\end_layout
 
 \end_inset
 
 
 \end_layout
 
-\begin_layout EndFrame
-
-\end_layout
-
-\begin_layout BeginFrame
-The sparsity problem - nGrams
-\end_layout
-
+\begin_deeper
 \begin_layout Itemize
 
 \series bold
 Bigrams
 \series default
- looks for pairs of consequtive words 
+ looks for pairs of consecutive words 
 \begin_inset Formula $w_{1}w_{2}$
 \end_inset
 
 .
- The number of possible outcomes is now 
+ 
+\end_layout
+
+\begin_layout Itemize
+The number of possible outcomes is now 
 \begin_inset Formula $B=V^{2}$
 \end_inset
 
 .
+\end_layout
+
+\begin_layout Pause
+
 \end_layout
 
 \begin_layout Itemize
@@ -607,12 +966,20 @@ huge outcome space
 \end_inset
 
 .
- Lots of n-grams are unseen in training corpus.
+ 
+\end_layout
+
+\begin_layout Itemize
+Lots of n-grams are unseen in training corpus.
  
 \series bold
 Sparsity
 \series default
  problems!
+\end_layout
+
+\begin_layout Pause
+
 \end_layout
 
 \begin_layout Itemize
@@ -648,21 +1015,40 @@ where
 \begin_inset Formula $w_{1}w_{2}\cdots w_{n}$
 \end_inset
 
- in the training corpus.
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+in the training corpus.
 \end_layout
 
-\begin_layout Itemize
-But who put the 1 in add-one smoothing?
-\end_layout
-
-\begin_layout EndFrame
+\end_deeper
+\begin_layout Separator
 
 \end_layout
 
-\begin_layout BeginFrame
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
 Likelihood inference for multinomial data
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
 \begin_layout Itemize
 
 \series bold
@@ -730,6 +1116,10 @@ Example: A recent survey among consumer smartphones owners in the U.S.
  owned some other mobile phone.
 \end_layout
 
+\begin_layout Pause
+
+\end_layout
+
 \end_deeper
 \begin_layout Itemize
 Let 
@@ -741,6 +1131,10 @@ Let
 \end_inset
 
  etc
+\end_layout
+
+\begin_layout Pause
+
 \end_layout
 
 \begin_layout Itemize
@@ -759,6 +1153,10 @@ p(n_{1},n_{2},...,n_{B}|\theta_{1},\theta_{2},...,\theta_{B})=const\cdot\prod_{j
 
 \end_layout
 
+\begin_layout Pause
+
+\end_layout
+
 \begin_layout Itemize
 
 \series bold
@@ -775,30 +1173,25 @@ Maximum likelihood
 
 \end_layout
 
-\begin_layout EndFrame
+\end_deeper
+\begin_layout Separator
 
 \end_layout
 
-\begin_layout BeginFrame
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
 Bayesian smoothing for multinomial data
 \end_layout
 
-\begin_layout Itemize
-
-\series bold
-Maximum likelihood
-\series default
- (ML) estimator
-\begin_inset Formula 
-\[
-\hat{\theta}_{b}=\frac{n_{b}}{N}
-\]
-
 \end_inset
 
 
 \end_layout
 
+\begin_deeper
 \begin_layout Itemize
 
 \series bold
@@ -820,6 +1213,10 @@ ML problematic when data is sparse
 .
 \end_layout
 
+\begin_layout Pause
+
+\end_layout
+
 \begin_layout Itemize
 
 \series bold
@@ -833,18 +1230,34 @@ Bayesian prior
 \end_layout
 
 \begin_layout Itemize
-Prior: 
+
+\series bold
+Prior:
+\series default
+ 
 \begin_inset Formula $\theta\sim\mathrm{Dirichlet}(\alpha_{1},...,\alpha_{B})$
 \end_inset
 
  with density
 \begin_inset Formula 
 \[
-p(\theta_{1},\theta_{2},...,\theta_{B})\propto\prod_{j=1}^{B}\theta_{j}^{\alpha_{j}-1}.
+p(\theta_{1},\theta_{2},...,\theta_{B})\propto\prod_{j=1}^{B}\theta_{j}^{\alpha_{j}-1}
 \]
 
 \end_inset
 
+
+\end_layout
+
+\begin_layout Pause
+
+\end_layout
+
+\begin_layout Itemize
+Distribution over the simplex
+\end_layout
+
+\begin_layout Pause
 
 \end_layout
 
@@ -908,14 +1321,261 @@ precision
  parameter.
 \end_layout
 
-\begin_layout EndFrame
+\end_deeper
+\begin_layout Separator
 
 \end_layout
 
-\begin_layout BeginFrame
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+The dirichlet distribution
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+only<1>{
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\lang swedish
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<echo=FALSE, fig.height=4>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+plt <- draw_dir_example()
+\end_layout
+
+\begin_layout Plain Layout
+
+multiplot(plotlist = plt, cols = 2)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+only<2>{
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\lang swedish
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<echo=FALSE, fig.height=4>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+plt <- draw_dir_example()
+\end_layout
+
+\begin_layout Plain Layout
+
+multiplot(plotlist = plt, cols = 2)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+only<3>{
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\lang swedish
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<echo=FALSE, fig.height=4>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+plt <- draw_dir_example()
+\end_layout
+
+\begin_layout Plain Layout
+
+multiplot(plotlist = plt, cols = 2)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+only<4>{
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\lang swedish
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+<<echo=FALSE, fig.height=4>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+plt <- draw_dir_example()
+\end_layout
+
+\begin_layout Plain Layout
+
+multiplot(plotlist = plt, cols = 2)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
 Bayesian smoothing for multinomial data
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
 \begin_layout Itemize
 
 \series bold
@@ -964,6 +1624,10 @@ E(\theta_{b}|n_{1},...,n_{B})=\frac{n_{b}+\alpha_{b}}{N+\sum_{j=1}^{B}\alpha_{j}
 
 \end_layout
 
+\begin_layout Pause
+
+\end_layout
+
 \begin_layout Itemize
 
 \series bold
@@ -988,6 +1652,10 @@ where
 .
 \end_layout
 
+\begin_layout Pause
+
+\end_layout
+
 \begin_layout Itemize
 Not a great solution when 
 \begin_inset Formula $B>>N$
@@ -1001,14 +1669,25 @@ Not a great solution when
 Uniform prior distribution over all n-grams is stupid.
 \end_layout
 
-\begin_layout EndFrame
+\end_deeper
+\begin_layout Separator
 
 \end_layout
 
-\begin_layout BeginFrame
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
 Other smoothing methods
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
 \begin_layout Itemize
 
 \series bold
@@ -1039,9 +1718,9 @@ The parameters
 \end_inset
 
  can be chosen by cross-validation.
-\begin_inset VSpace medskip
-\end_inset
+\end_layout
 
+\begin_layout Pause
 
 \end_layout
 
@@ -1077,29 +1756,40 @@ Katz back-off
 \end_inset
 
 
-\family default
-\size default
+\end_layout
 
-\begin_inset VSpace medskip
+\begin_layout Pause
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+PoS-based N-grams
+\series default
+: use word classes to better distribute probability mass to unseen trigrams.
+ Verb-Verb-Verb is not a likely sequence.
+\end_layout
+
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Part-of-speech tagging
+\end_layout
+
 \end_inset
 
 
 \end_layout
 
-\begin_layout Itemize
-Class-based N-grams: use word classes to better distribute probability mass
- to unseen trigrams.
- Verb-Verb-Verb is not a likely sequence.
-\end_layout
-
-\begin_layout EndFrame
-
-\end_layout
-
-\begin_layout BeginFrame
-Part-of-speech tagging
-\end_layout
-
+\begin_deeper
 \begin_layout Itemize
 
 \series bold
@@ -1107,16 +1797,16 @@ Part-of-Speech
 \series default
  (
 \series bold
-POS
+PoS
 \series default
 ) or 
 \series bold
 word classes
 \series default
  - verb, noun, adjective, preposition etc:
-\begin_inset VSpace medskip
-\end_inset
+\end_layout
 
+\begin_layout Pause
 
 \end_layout
 
@@ -1151,9 +1841,9 @@ Verb
 \series default
 , base form.
  VBD - past tense.
-\begin_inset VSpace medskip
-\end_inset
+\end_layout
 
+\begin_layout Pause
 
 \end_layout
 
@@ -1171,11 +1861,7 @@ Fulton
 \series bold
 County
 \series default
-/
-\series bold
-nn-tl
-\series default
- 
+/nn-tl 
 \series bold
 Grand
 \series default
@@ -1192,56 +1878,27 @@ said
 Friday
 \series default
 /nr ...
-\begin_inset VSpace medskip
-\end_inset
+\end_layout
 
+\end_deeper
+\begin_layout Separator
 
 \end_layout
 
-\begin_layout Itemize
-nltk.corpus.brown.tagged_words(simplify_tags=True): 
-\begin_inset Newline newline
-\end_inset
+\begin_layout Frame
+\begin_inset Argument 4
+status open
 
-[('
-\series bold
-The
-\series default
-', 'DET'), ('
-\series bold
-Fulton
-\series default
-', 'N'), ('
-\series bold
-County
-\series default
-', 'N'), ...]
-\begin_inset VSpace medskip
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-
-\family typewriter
-nltk.pos_tag(myText) 
-\family default
-[first 
-\family typewriter
-nltk.word_tokenize(myText)
-\family default
-]
-\end_layout
-
-\begin_layout EndFrame
-
-\end_layout
-
-\begin_layout BeginFrame
+\begin_layout Plain Layout
 A probabilistic model for POS tagging
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
 \begin_layout Itemize
 
 \series bold
@@ -1266,8 +1923,16 @@ w_{1}^{n}=w_{1}w_{2}\cdots w_{n}
 
 \end_layout
 
+\begin_layout Pause
+
+\end_layout
+
 \begin_layout Itemize
-Note: each word gets a POS tag
+
+\series bold
+Note
+\series default
+: each word gets a POS tag
 \begin_inset Formula 
 \[
 \begin{array}{cccc}
@@ -1282,7 +1947,11 @@ t_{1} & t_{2} & \cdots & t_{n}
 \end_layout
 
 \begin_layout Itemize
-Aim: posterior distribution of the tags
+
+\series bold
+Aim
+\series default
+: posterior distribution of the tags
 \begin_inset Formula 
 \[
 p(t_{1}^{n}|w_{1}^{n})
@@ -1293,26 +1962,25 @@ p(t_{1}^{n}|w_{1}^{n})
 
 \end_layout
 
-\begin_layout Itemize
-Or perhaps sufficient with posterior mode
-\begin_inset Formula 
-\[
-\underset{t_{1}^{n}}{\mathrm{argmax}}\: p(t_{1}^{n}|w_{1}^{n})
-\]
+\end_deeper
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+A probabilistic model for POS tagging, cont.
+\end_layout
 
 \end_inset
 
 
 \end_layout
 
-\begin_layout EndFrame
-
-\end_layout
-
-\begin_layout BeginFrame
-A probabilistic model for POS tagging, cont.
-\end_layout
-
+\begin_deeper
 \begin_layout Itemize
 Bayes theorem:
 \begin_inset Formula 
@@ -1345,8 +2013,16 @@ p(t_{1}^{n}|w_{1}^{n})\propto p(w_{1}^{n}|t_{1}^{n})p(t_{1}^{n})
 
 \end_layout
 
+\begin_layout Pause
+
+\end_layout
+
 \begin_layout Itemize
-Problem: outcome space of 
+
+\series bold
+Problem
+\series default
+: outcome space of 
 \begin_inset Formula $t_{1}^{n}$
 \end_inset
 
@@ -1386,14 +2062,25 @@ Example
 
 \end_layout
 
-\begin_layout EndFrame
+\end_deeper
+\begin_layout Separator
 
 \end_layout
 
-\begin_layout BeginFrame
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
 A probabilistic model for POS tagging, cont.
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
 \begin_layout Itemize
 Two simplifying assumptions makes the problem manageable.
 \end_layout
@@ -1451,17 +2138,28 @@ Hidden Markov model
 \series bold
 HMM
 \series default
-).
+)
 \end_layout
 
-\begin_layout EndFrame
+\end_deeper
+\begin_layout Separator
 
 \end_layout
 
-\begin_layout BeginFrame
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
 Markov model for POS tags - HMM model
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
 \begin_layout Standard
 \align center
 \begin_inset Graphics
@@ -1473,14 +2171,25 @@ Markov model for POS tags - HMM model
 
 \end_layout
 
-\begin_layout EndFrame
+\end_deeper
+\begin_layout Separator
 
 \end_layout
 
-\begin_layout BeginFrame
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
 Observation likelihoods - HMM model
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
 \begin_layout Standard
 \align center
 \begin_inset Graphics
@@ -1493,14 +2202,25 @@ Observation likelihoods - HMM model
 
 \end_layout
 
-\begin_layout EndFrame
+\end_deeper
+\begin_layout Separator
 
 \end_layout
 
-\begin_layout BeginFrame
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
 Part-of-speech tagging, cont.
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
 \begin_layout Itemize
 The POS prior
 \begin_inset Formula 
@@ -1511,6 +2231,10 @@ p(t_{1}^{n})=\prod_{i=1}^{n}p(t_{i}|t_{i-1})
 \end_inset
 
 can be estimated as a bigram model from a tagged corpus.
+\end_layout
+
+\begin_layout Pause
+
 \end_layout
 
 \begin_layout Itemize
@@ -1533,7 +2257,7 @@ The word distribution
 The solution to the prediction (parsing) problem
 \begin_inset Formula 
 \[
-\mathrm{argmax}_{t_{1}^{n}}\, p(t_{1}^{n}|w_{1}^{n})
+\mathrm{argmax}_{t_{1}^{n}}\,p(t_{1}^{n}|w_{1}^{n})
 \]
 
 \end_inset
@@ -1545,12 +2269,25 @@ Viterbi
  algorithm.
 \end_layout
 
-\begin_layout Itemize
-NLTK: 
-\family typewriter
-nltk.parse.viterbi(myText)
+\end_deeper
+\begin_layout Separator
+
 \end_layout
 
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Part-of-speech tagging, cont.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
 \begin_layout Itemize
 Gibbs sampling can be used to draw samples from the posterior 
 \family roman
@@ -1573,11 +2310,28 @@ p(t_{1}^{n}|w_{1}^{n})
 \end_inset
 
 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+both using supervised data, semi-supervised and unsupervised.
 \end_layout
 
-\begin_layout EndFrame
+\begin_layout Pause
 
 \end_layout
 
+\begin_layout Itemize
+Can be combined with more complex probabilistic models
+\end_layout
+
+\end_deeper
 \end_body
 \end_document
