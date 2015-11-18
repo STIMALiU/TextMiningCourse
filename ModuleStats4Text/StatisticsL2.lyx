@@ -37,7 +37,7 @@
  % \fi
 }
 \end_preamble
-\options xcolor=svgnames
+\options xcolor=svgnames, handout
 \use_default_options false
 \maintain_unincluded_children false
 \language english
