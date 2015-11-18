@@ -37,7 +37,7 @@
  % \fi
 }
 \end_preamble
-\options xcolor=svgnames
+\options xcolor=svgnames, handout
 \use_default_options false
 \begin_modules
 knitr
@@ -344,14 +344,6 @@ Tokens
 \end_layout
 
 \begin_layout Itemize
-Sentences
-\end_layout
-
-\begin_layout Pause
-
-\end_layout
-
-\begin_layout Itemize
 Types / word types
 \end_layout
 
@@ -360,7 +352,15 @@ Types / word types
 \end_layout
 
 \begin_layout Itemize
-Document
+Vocabulary
+\end_layout
+
+\begin_layout Pause
+
+\end_layout
+
+\begin_layout Itemize
+Sentence / Document / text segment / context
 \end_layout
 
 \begin_layout Pause
@@ -369,14 +369,6 @@ Document
 
 \begin_layout Itemize
 Corpus
-\end_layout
-
-\begin_layout Pause
-
-\end_layout
-
-\begin_layout Itemize
-Vocabulary
 \end_layout
 
 \end_deeper
