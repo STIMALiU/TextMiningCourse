@@ -1,5 +1,5 @@
-#LyX 2.0 created this file. For more info see http://www.lyx.org/
-\lyxformat 413
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
 \begin_document
 \begin_header
 \textclass article
@@ -12,13 +12,13 @@
 \font_roman default
 \font_sans default
 \font_typewriter default
+\font_math auto
 \font_default_family default
 \use_non_tex_fonts false
 \font_sc false
 \font_osf false
 \font_sf_scale 100
 \font_tt_scale 100
-
 \graphics default
 \default_output_format default
 \output_sync 0
@@ -29,15 +29,24 @@
 \use_hyperref false
 \papersize default
 \use_geometry true
-\use_amsmath 1
-\use_esint 1
-\use_mhchem 1
-\use_mathdots 1
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
 \cite_engine basic
+\cite_engine_type default
+\biblio_style plain
 \use_bibtopic false
 \use_indices false
 \paperorientation portrait
 \suppress_date false
+\justification true
 \use_refstyle 1
 \index Index
 \shortcut idx
@@ -69,10 +78,10 @@
 \align left
 \begin_inset Tabular
 <lyxtabular version="3" rows="4" columns="3">
-<features tabularvalignment="middle">
-<column alignment="left" valignment="top" width="0">
-<column alignment="left" valignment="top" width="0">
-<column alignment="right" valignment="top" width="0">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
+<column alignment="right" valignment="top">
 <row>
 <cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
@@ -96,7 +105,7 @@ LINKÖPING UNIVERSITY
 \begin_inset Text
 
 \begin_layout Plain Layout
-2013-05-02
+2015-11-27
 \end_layout
 
 \end_inset
@@ -140,7 +149,7 @@ Text Mining
 \begin_inset Text
 
 \begin_layout Plain Layout
-Division of Statistics
+Division of Statistics and Machine Learning
 \end_layout
 
 \end_inset
@@ -169,7 +178,7 @@ Division of Statistics
 \begin_inset Text
 
 \begin_layout Plain Layout
-Mattias Villani
+Måns Magnusson/Mattias Villani
 \end_layout
 
 \end_inset
@@ -211,10 +220,10 @@ Mattias Villani
 \noindent
 \align left
 \begin_inset Tabular
-<lyxtabular version="3" rows="11" columns="2">
-<features tabularvalignment="middle">
-<column alignment="left" valignment="top" width="0">
-<column alignment="left" valignment="top" width="0">
+<lyxtabular version="3" rows="13" columns="2">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
 <row>
 <cell multicolumn="1" alignment="left" valignment="top" usebox="none">
 \begin_inset Text
@@ -284,7 +293,7 @@ Deadline
 \begin_inset Text
 
 \begin_layout Plain Layout
-May 10, midnight
+See LISAM
 \end_layout
 
 \end_inset
@@ -308,7 +317,7 @@ Teacher
 \begin_inset Text
 
 \begin_layout Plain Layout
-Mattias Villani
+Måns Magnusson
 \end_layout
 
 \end_inset
@@ -354,7 +363,7 @@ Submission:
 \begin_inset Text
 
 \begin_layout Plain Layout
-By email to Mattias Villani
+Through LISAM
 \end_layout
 
 \end_inset
@@ -388,8 +397,54 @@ By email to Mattias Villani
 
 \series bold
 \size small
-Solutions should be written in a PDF file with the code in a text file with
- .py extension.
+Write your solutions in COMPLETE, READABLE and EXECUTABLE code.
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+\size small
+Solutions should be written in a text file with .py extension.
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+\size small
+Graphs produced during the lab should NOT be submitted, submit only the
+ code.
 \end_layout
 
 \end_inset
@@ -491,13 +546,166 @@ height "1pt"
 \end_layout
 
 \begin_layout Standard
-\noindent
 Note: you may need to do download the movie_reviews corpus from nltk by
- (see the nltk book for details)
+ (see the nltk book for details) 
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+import nltk 
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+nltk.download() 
+\end_layout
+
+\begin_layout Standard
+Choose d for download and then type 
+\family typewriter
+movie_reviews
+\family default
+.
+\end_layout
+
+\begin_layout Enumerate
+Document classification
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Use the 
+\family typewriter
+movie_reviews
+\family default
+ data from the 
+\family typewriter
+nltk.corpus
+\family default
+ module to construct a naive Bayes classifier from a training sample consisting
+ of 80% of the data.
+ Use only binary features [
+\family typewriter
+has(’word’)
+\family default
+] based on the 1000 most frequent words in the corpus.
+ Do not pre-process the text in the reviews.
+ Evaluate the predictive performance on the test data (the 20% that you
+ left out from training) using measures like 
+\emph on
+Accuracy
+\emph default
+, 
+\emph on
+Precision
+\emph default
+, 
+\emph on
+Recall
+\emph default
+ and the 
+\emph on
+F-measure
+\emph default
+.
+ 
 \begin_inset Newline newline
 \end_inset
 
-
+[Hint 1: To get a head start, check out the 
 \family typewriter
-import nltk
-\family defa
+movie_reviews
+\family default
+ example in the NLTK book in Chapter 6.
+ http://nltk.googlecode.com/svn/trunk/doc/book/ch06.html.
+ Make sure that you understand the code in the NLTK 
+\family typewriter
+movie_review
+\family default
+ example.
+ You will need to modify the code later on, so it will pay off to understand
+ it.] 
+\begin_inset Newline newline
+\end_inset
+
+[Hint 2: Use the shuffle function in the random module to randomly reorder
+ the documents in the collection (otherwise you might get all the positive
+ reviews in the test set, or vice versa)] 
+\begin_inset Newline newline
+\end_inset
+
+[Hint 3: When you have trained your naive Bayes classifier you should have
+ a object of the type 
+\family typewriter
+NaiveBayesClassifier
+\family default
+ in working memory.
+ This object has a lot of useful methods, type the objects name followed
+ by a period to see a list of its methods.
+ Use Google to learn about these methods.]
+\end_layout
+
+\begin_layout Enumerate
+Redo the analysis in a), but this time do a careful pre-processing of the
+ data before training and prediction.
+ Play around with normalization, stemming, removing stop words, removing
+ punctuation, remove numbers, or whatever you find interesting.
+ Use the same subset for training and testing as in a).
+ Compare the predictive performance of the models to the model in a).
+ Be creative.
+ Analyze.
+\end_layout
+
+\begin_layout Enumerate
+Continue with the best version of the pre-processed data from b), but now
+ do a more careful selection of features.
+ Consider not only binary features, but also perhaps frequencies of individual
+ words, measures of lexical diversity, average word length, maybe bigrams
+ or collocations.
+ Note that you need to convert the non-binary features to a set of binary
+ features (
+\begin_inset Formula $x<c_{1}$
+\end_inset
+
+, 
+\begin_inset Formula $c_{1}\leq x<c_{2}$
+\end_inset
+
+ and so on, where 
+\begin_inset Formula $c_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $c_{2}$
+\end_inset
+
+ etc are cut-off points for the bins, see my slides from Lecture 2).
+ Note also that 
+\begin_inset Formula $k$
+\end_inset
+
+ bins can be represented by 
+\begin_inset Formula $k−1$
+\end_inset
+
+ binary features.
+ Experiment as much as you like and have the time for.
+ Always compare the predictive performance of the models.
+\end_layout
+
+\begin_layout Enumerate
+Finally, consider the use of tf–idf weighted features.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+Have fun!
+\end_layout
+
+\end_body
+\end_document
