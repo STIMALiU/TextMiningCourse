@@ -30,6 +30,7 @@ JSS_dtm <- DocumentTermMatrix(corpus)
 dim(JSS_dtm)
 inspect(JSS_dtm[1:20,'algorithm'])
 
+
 # Reducing the number of features by keeping only words with tf-idf > 0.1
 #install.packages("slam")
 library("slam")
