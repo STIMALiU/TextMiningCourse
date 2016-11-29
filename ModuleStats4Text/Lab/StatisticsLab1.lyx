@@ -105,7 +105,7 @@ LINKÖPING UNIVERSITY
 \begin_inset Text
 
 \begin_layout Plain Layout
-2015-11-27
+2016-11-29
 \end_layout
 
 \end_inset
@@ -167,7 +167,7 @@ Division of Statistics and Machine Learning
 \begin_inset Text
 
 \begin_layout Plain Layout
-732A47
+732A92
 \end_layout
 
 \end_inset
@@ -178,7 +178,7 @@ Division of Statistics and Machine Learning
 \begin_inset Text
 
 \begin_layout Plain Layout
-Måns Magnusson/Mattias Villani
+Johan Falkenjack/Måns Magnusson/Mattias Villani
 \end_layout
 
 \end_inset
@@ -293,7 +293,7 @@ Deadline
 \begin_inset Text
 
 \begin_layout Plain Layout
-See LISAM
+Wednesday December 14th, 23.59
 \end_layout
 
 \end_inset
@@ -317,7 +317,7 @@ Teacher
 \begin_inset Text
 
 \begin_layout Plain Layout
-Måns Magnusson
+Johan Falkenjack
 \end_layout
 
 \end_inset
@@ -363,7 +363,7 @@ Submission:
 \begin_inset Text
 
 \begin_layout Plain Layout
-Through LISAM
+732A92@ida.liu.se, sub: 732A92-2016 LAB4 LiU-ID partner’s LiU-ID johsj47
 \end_layout
 
 \end_inset
@@ -664,7 +664,7 @@ Continue with the best version of the pre-processed data from b), but now
  Consider not only binary features, but also perhaps frequencies of individual
  words, measures of lexical diversity, average word length, maybe bigrams
  or collocations.
- Note that you need to convert the non-binary features to a set of binary
+ Note that you need to convert any non-binary features to a set of binary
  features (
 \begin_inset Formula $x<c_{1}$
 \end_inset
@@ -681,7 +681,7 @@ Continue with the best version of the pre-processed data from b), but now
 \begin_inset Formula $c_{2}$
 \end_inset
 
- etc are cut-off points for the bins, see my slides from Lecture 2).
+ etc are cut-off points for the bins, see slide 9 from Lecture 2).
  Note also that 
 \begin_inset Formula $k$
 \end_inset
