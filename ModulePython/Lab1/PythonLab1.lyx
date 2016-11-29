@@ -1,5 +1,5 @@
-#LyX 2.0 created this file. For more info see http://www.lyx.org/
-\lyxformat 413
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
 \begin_document
 \begin_header
 \textclass article
@@ -12,13 +12,13 @@
 \font_roman default
 \font_sans default
 \font_typewriter default
+\font_math auto
 \font_default_family default
 \use_non_tex_fonts false
 \font_sc false
 \font_osf false
 \font_sf_scale 100
 \font_tt_scale 100
-
 \graphics default
 \default_output_format default
 \output_sync 0
@@ -29,15 +29,24 @@
 \use_hyperref false
 \papersize default
 \use_geometry true
-\use_amsmath 1
-\use_esint 1
-\use_mhchem 1
-\use_mathdots 1
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
 \cite_engine basic
+\cite_engine_type default
+\biblio_style plain
 \use_bibtopic false
 \use_indices false
 \paperorientation portrait
 \suppress_date false
+\justification true
 \use_refstyle 1
 \index Index
 \shortcut idx
@@ -69,10 +78,10 @@
 \align left
 \begin_inset Tabular
 <lyxtabular version="3" rows="4" columns="3">
-<features tabularvalignment="middle">
-<column alignment="left" valignment="top" width="0">
-<column alignment="left" valignment="top" width="0">
-<column alignment="right" valignment="top" width="0">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
+<column alignment="right" valignment="top">
 <row>
 <cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
@@ -96,7 +105,7 @@ LINKÖPING UNIVERSITY
 \begin_inset Text
 
 \begin_layout Plain Layout
-2013-03-31
+2016-10-24
 \end_layout
 
 \end_inset
@@ -117,7 +126,7 @@ Department of Computer and Information Science
 
 \begin_layout Plain Layout
 \begin_inset space \hspace{}
-\length 5cm
+\length 2.4cm
 \end_inset
 
 
@@ -129,7 +138,7 @@ Department of Computer and Information Science
 \begin_inset Text
 
 \begin_layout Plain Layout
-Text Mining
+732A54 Big Data Analytics
 \end_layout
 
 \end_inset
@@ -140,7 +149,7 @@ Text Mining
 \begin_inset Text
 
 \begin_layout Plain Layout
-Division of Statistics
+Natural Language Processing Lab (NLPLAB)
 \end_layout
 
 \end_inset
@@ -158,7 +167,7 @@ Division of Statistics
 \begin_inset Text
 
 \begin_layout Plain Layout
-732A47
+732A92 Text Mining
 \end_layout
 
 \end_inset
@@ -169,7 +178,7 @@ Division of Statistics
 \begin_inset Text
 
 \begin_layout Plain Layout
-Mattias Villani
+Johan Falkenjack
 \end_layout
 
 \end_inset
@@ -212,9 +221,9 @@ Mattias Villani
 \align left
 \begin_inset Tabular
 <lyxtabular version="3" rows="13" columns="2">
-<features tabularvalignment="middle">
-<column alignment="left" valignment="top" width="0">
-<column alignment="left" valignment="top" width="0">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
 <row>
 <cell multicolumn="1" alignment="left" valignment="top" usebox="none">
 \begin_inset Text
@@ -284,7 +293,7 @@ Deadline
 \begin_inset Text
 
 \begin_layout Plain Layout
-April 8, midnight
+Monday, November 7, 8.15 in the morning
 \end_layout
 
 \end_inset
@@ -308,7 +317,7 @@ Teacher
 \begin_inset Text
 
 \begin_layout Plain Layout
-Mattias Villani
+Johan Falkenjack
 \end_layout
 
 \end_inset
@@ -354,7 +363,7 @@ Submission:
 \begin_inset Text
 
 \begin_layout Plain Layout
-By email to Mattias Villani
+By email to 732a92@ida.liu.se
 \end_layout
 
 \end_inset
@@ -434,8 +443,8 @@ Solutions should be written in a text file with .py extension.
 
 \series bold
 \size small
-Graphs produced during the lab should NOT be submitted, submit only the
- code.
+Any graphs produced during the lab should NOT be submitted, submit only
+ the code.
 \end_layout
 
 \end_inset
@@ -458,8 +467,7 @@ Graphs produced during the lab should NOT be submitted, submit only the
 
 \series bold
 \size small
-Comment directly in the code (using # or ''') whenever something needs to
- be explained.
+Comment directly in the code (using #) whenever something needs to be explained.
 \end_layout
 
 \end_inset
@@ -598,8 +606,8 @@ Write a for loop that produces the following output on the screen:
 
 \begin_inset Tabular
 <lyxtabular version="3" rows="4" columns="1">
-<features tabularvalignment="middle">
-<column alignment="left" valignment="top" width="0">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="left" valignment="top">
 <row>
 <cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
@@ -671,7 +679,7 @@ Write a while-loop that repeatedly generates a random number from a uniform
 \begin_inset Formula $0.9$
 \end_inset
 
-' on the screen until the generated random number is smaller than 
+' on the screen until the generated random number is greater than 
 \begin_inset Formula $0.9$
 \end_inset
 
@@ -701,8 +709,8 @@ names = ['Ludwig','Rosa','Mona','Amadeus']
 
 \begin_inset Tabular
 <lyxtabular version="3" rows="4" columns="1">
-<features tabularvalignment="middle">
-<column alignment="left" valignment="top" width="0">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="left" valignment="top">
 <row>
 <cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
@@ -830,8 +838,8 @@ shortLong
 
 \begin_inset Tabular
 <lyxtabular version="3" rows="4" columns="1">
-<features tabularvalignment="middle">
-<column alignment="left" valignment="top" width="0">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="left" valignment="top">
 <row>
 <cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
@@ -927,11 +935,11 @@ Make three more dictionaries, one for each of the students: Rosa, Mona and
 
 \begin_inset Tabular
 <lyxtabular version="3" rows="4" columns="4">
-<features tabularvalignment="middle">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
-<column alignment="center" valignment="top" width="0">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
 <row>
 <cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
@@ -1137,8 +1145,8 @@ Use for-loop to print out the names and scores of all students on the screen.
 
 \begin_inset Tabular
 <lyxtabular version="3" rows="3" columns="1">
-<features tabularvalignment="middle">
-<column alignment="left" valignment="top" width="0">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="left" valignment="top">
 <row>
 <cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
@@ -1180,14 +1188,7 @@ Student Rosa scored 19 on the Algebra exam and 22 on the History exam
 \begin_inset Newline newline
 \end_inset
 
-[Hints: Dictionaries are iterables.
- A really pretty solution involves the 
-\family typewriter
-\size small
-.items()
-\family default
-\size default
- method of a dictionary]
+[Hint: Dictionaries are iterables.]
 \begin_inset Newpage newpage
 \end_inset
 
@@ -1364,35 +1365,6 @@ Geometry.py
 Tools
 \series default
  menu and then choosing PYTHONPATH.
-\end_layout
-
-\begin_layout Enumerate
-Now define another function in your 
-\family typewriter
-Geometry
-\family default
- module that computes the area of a triangle.
- Try to import the new function from the module.
- Why does it not work?
-\begin_inset Newline newline
-\end_inset
-
-[Hint: try 
-\family typewriter
-import imp
-\family default
- followed by 
-\family typewriter
-imp.reload(Geometry)
-\family default
-.
- 
-\series bold
-Update
-\series default
-: this does not seem to work on all systems, at least as easy as I intend
- it to be.
- Solution: skip this part, or switch to Linux :-) ]
 \end_layout
 
 \end_deeper
